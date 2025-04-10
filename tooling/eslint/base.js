@@ -83,7 +83,18 @@ export default tseslint.config(
           rule: "kebab-case",
         },
       ],
-      "filenames-simple/named-export": ["error", "singular"],
+    },
+  },
+  // apply to all files, but not to pages or layouts
+  // let me know if we need to add more exceptions
+  {
+    files: ["**/*.{ts,tsx}"],
+    ignores: ["**/{page,layout}.tsx"],
+    plugins: {
+      import: importPlugin,
+    },
+    rules: {
+      "import/no-default-export": "warn",
     },
   },
   {
