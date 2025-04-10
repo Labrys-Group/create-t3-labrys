@@ -1,3 +1,8 @@
+---
+tags:
+  - Repo setup
+---
+
 # Dotenv Vault
 
 [Dotenv Vault](https://www.dotenv.org/docs/) allows us to sync secrets between developer's machine and to deployments by storing an encrypted version of the secrets in the repo. This guide will walk you through setting up Dotenv Vault in the repo and deployments.
