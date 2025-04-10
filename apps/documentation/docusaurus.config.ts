@@ -62,7 +62,7 @@ const config: Config = {
           type: "docSidebar",
           sidebarId: "docsSidebar",
           position: "left",
-          label: "Docs",
+          label: "Project Docs",
         },
         {
           href: "https://github.com/Labrys-Group/create-t3-turbo-mongo",
