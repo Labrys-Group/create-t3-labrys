@@ -3,6 +3,7 @@
 import * as path from "node:path";
 import { includeIgnoreFile } from "@eslint/compat";
 import eslint from "@eslint/js";
+import filenamesPlugin from "eslint-plugin-filenames-simple";
 import importPlugin from "eslint-plugin-import";
 import turboPlugin from "eslint-plugin-turbo";
 import tseslint from "typescript-eslint";
@@ -46,6 +47,7 @@ export default tseslint.config(
     plugins: {
       import: importPlugin,
       turbo: turboPlugin,
+      filenames: filenamesPlugin,
     },
     extends: [
       eslint.configs.recommended,
@@ -75,6 +77,13 @@ export default tseslint.config(
       ],
       "@typescript-eslint/no-non-null-assertion": "error",
       "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+      "filenames/naming-convention": [
+        "warn",
+        {
+          rule: "kebab-case",
+        },
+      ],
+      "filenames-simple/named-export": ["error", "singular"],
     },
   },
   {
