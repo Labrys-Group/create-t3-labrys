@@ -43,7 +43,16 @@ const config: Config = {
   themes: ["@docusaurus/theme-mermaid"],
 
   themeConfig: {
-    // Replace with your project's social card
+    // TODO: Remove this once the docs are updated
+    announcementBar: {
+      id: "setup_docs",
+      content:
+        "Set up your docs by following the <a href='/docs/repo-configuration/apps/documentation/set-up-docusaurus'>Set up Docusaurus</a> guide",
+      backgroundColor: "#2E8555",
+      textColor: "#FFF",
+      isCloseable: false,
+    },
+    // TODO: Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
       title: "acme Documentation",
@@ -62,7 +71,7 @@ const config: Config = {
           type: "docSidebar",
           sidebarId: "docsSidebar",
           position: "left",
-          label: "Docs",
+          label: "Project Docs",
         },
         {
           href: "https://github.com/Labrys-Group/create-t3-turbo-mongo",
