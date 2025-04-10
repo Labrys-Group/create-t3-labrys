@@ -1,8 +1,12 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import { clerkMiddleware, requireAuth } from "@clerk/express";
 import express from "express";
 
 import "dotenv/config";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -43,7 +47,7 @@ if (process.env.CLERK_SECRET_KEY) {
 }
 
 // For local development
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   const PORT = process.env.PORT ?? 3000;
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
