@@ -65,7 +65,7 @@ const config: Config = {
           type: "docSidebar",
           sidebarId: "repoConfigurationSidebar",
           position: "left",
-          label: "Repo Structure",
+          label: "Repo Template",
         },
         {
           type: "docSidebar",

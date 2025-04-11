@@ -1,6 +1,5 @@
 {
   "label": "Services",
-  "position": 1,
   "link": {
     "type": "generated-index",
     "description": "Services used at Labrys with this repo template."
