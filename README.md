@@ -8,6 +8,20 @@ There are two ways of initializing an app using the `create-t3-turbo-mongo` star
 npx create-turbo@latest -e https://github.com/Labrys-Group/create-t3-turbo-mongo
 ```
 
+## Documentation
+
+The main documentation is in Docusaurus within the repo template.
+
+To run Docusaurus:
+
+```bash
+pnpm i
+cd apps/documentation
+pnpm start
+```
+
+Or you can visit the hosted documentation [available here](https://create-t3-turbo-mongo-documentation.vercel.app/).
+
 ## Quick Start (Without Expo)
 
 To get it running, follow the steps below:
