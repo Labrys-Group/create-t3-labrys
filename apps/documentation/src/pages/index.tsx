@@ -19,7 +19,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/category/project-structure"
+            to="/docs/repo-configuration/project-structure"
           >
             Project Structure
           </Link>
