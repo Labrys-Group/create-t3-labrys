@@ -32,7 +32,7 @@ import dbConnect from "@acme/db/dbConnect";
 export const createTRPCContext = async (opts: {
   headers: Headers;
   auth: Awaited<ReturnType<typeof auth>> | null;
-}): Promise<{ auth: Awaited<ReturnType<typeof auth>> }> => {
+}): Promise<{ auth: Partial<Awaited<ReturnType<typeof auth>>> }> => {
   const authInfo = opts.auth ?? (await auth());
 
   const source = opts.headers.get("x-trpc-source") ?? "unknown";
@@ -123,11 +123,11 @@ export const publicProcedure = t.procedure.use(timingMiddleware);
  */
 export const protectedProcedure: ProcedureBuilder<
   {
-    auth: Awaited<ReturnType<typeof auth>>;
+    auth: Partial<Awaited<ReturnType<typeof auth>>>;
   },
   object,
   {
-    auth: Awaited<ReturnType<typeof auth>>;
+    auth: Partial<Awaited<ReturnType<typeof auth>>>;
   },
   typeof unsetMarker,
   typeof unsetMarker,

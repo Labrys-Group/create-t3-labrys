@@ -18,8 +18,7 @@ export const makeTestCaller = (
 
   return createCaller({
     ...opts,
-    session: null,
-    token: null,
+    auth: {},
   });
 };
 
@@ -33,10 +32,8 @@ export const makeTestCallerWithSession = (
 
   return createCaller({
     ...opts,
-    session: {
-      user: { id: "123", email: "test@test.com" },
-      expires: new Date().toISOString(),
+    auth: {
+      userId: "123",
     },
-    token: "test-token",
   });
 };
