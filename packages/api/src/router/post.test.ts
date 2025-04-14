@@ -2,7 +2,10 @@ import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
 import { Post } from "@acme/db";
 
-import { makeTestCaller, makeTestCallerWithSession } from "../tests/testCaller";
+import {
+  makeTestCaller,
+  makeTestCallerWithSession,
+} from "../tests/test-caller";
 
 let caller: ReturnType<typeof makeTestCaller>;
 let callerWithSession: ReturnType<typeof makeTestCallerWithSession>;

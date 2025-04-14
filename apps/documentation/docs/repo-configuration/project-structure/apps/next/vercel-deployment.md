@@ -4,6 +4,6 @@ Let's deploy the Next.js application to [Vercel](https://vercel.com). If you've 
 
 1. Create a new project on Vercel, select the `apps/nextjs` folder as the root directory. Vercel's zero-config system should handle all configurations for you.
 
-2. Set up Dotenv Vault by following the [Dotenv Vault guide](../../../services/dotenv-vault.md).
+2. Set up Dotenv Vault by following the [Dotenv Vault guide](../../../services/dotenv-vault.mdx).
 
 3. Done! Your app should successfully deploy.

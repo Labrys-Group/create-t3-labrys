@@ -87,22 +87,6 @@ vi.mock("next-auth", () => {
   };
 });
 
-// Mock @acme/auth
-vi.mock("@acme/auth", () => {
-  return {
-    auth: vi.fn(),
-    signIn: vi.fn(),
-    signOut: vi.fn(),
-    handlers: {
-      GET: vi.fn(),
-      POST: vi.fn(),
-    },
-    invalidateSessionToken: vi.fn(),
-    validateToken: vi.fn(),
-    isSecureContext: vi.fn(),
-  };
-});
-
 // Mock next/server
 vi.mock("next/server", () => ({
   NextResponse: {

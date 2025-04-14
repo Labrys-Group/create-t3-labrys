@@ -2,10 +2,8 @@ import { createEnv } from "@t3-oss/env-nextjs";
 import { vercel } from "@t3-oss/env-nextjs/presets-zod";
 import { z } from "zod";
 
-import { env as authEnv } from "@acme/auth/env";
-
 export const env = createEnv({
-  extends: [authEnv, vercel()],
+  extends: [vercel()],
   shared: {
     NODE_ENV: z
       .enum(["development", "production", "test"])
@@ -17,6 +15,7 @@ export const env = createEnv({
    */
   server: {
     MONGODB_URI: z.string(),
+    CLERK_SECRET_KEY: z.string().optional(), // required for Clerk
   },
 
   /**
@@ -25,6 +24,7 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: z.string().optional(),
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().optional(), // required for Clerk
   },
   /**
    * Destructure all variables from `process.env` to make sure they aren't tree-shaken away.
@@ -33,6 +33,8 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_GOOGLE_ANALYTICS_ID:
       process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
+      process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
   },
   skipValidation:
     !!process.env.CI || process.env.npm_lifecycle_event === "lint",
