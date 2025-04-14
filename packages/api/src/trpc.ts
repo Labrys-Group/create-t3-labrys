@@ -27,6 +27,9 @@ import dbConnect from "@acme/db/dbConnect";
  * This helper generates the "internals" for a tRPC context. The API handler and RSC clients each
  * wrap this and provides the required context.
  *
+ * The `auth` in the output of the function is Partial so that we can supply a partial object during tests,
+ * it should never be partial in normal use.
+ *
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: {
@@ -36,7 +39,7 @@ export const createTRPCContext = async (opts: {
   const authInfo = opts.auth ?? (await auth());
 
   const source = opts.headers.get("x-trpc-source") ?? "unknown";
-  console.log(">>> tRPC Request from", source, "by", authInfo.userId);
+  console.log(">>> tRPC Request from", source, "by", authInfo.userId); // TODO: can we show email here?
 
   await dbConnect();
 
