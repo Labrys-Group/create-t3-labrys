@@ -6,24 +6,16 @@
  * tl;dr - this is where all the tRPC server stuff is created and plugged in.
  * The pieces you will need to use are documented accordingly near the end
  */
+import type {
+  ProcedureBuilder,
+  unsetMarker,
+} from "@trpc/server/unstable-core-do-not-import";
+import { auth } from "@clerk/nextjs/server";
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
-import type { Session } from "@acme/auth";
-import { auth, validateToken } from "@acme/auth";
 import dbConnect from "@acme/db/dbConnect";
-
-/**
- * Isomorphic Session getter for API requests
- * - Expo requests will have a session token in the Authorization header
- * - Next.js requests will have a session token in cookies
- */
-const isomorphicGetSession = async (headers: Headers) => {
-  const authToken = headers.get("Authorization") ?? null;
-  if (authToken) return validateToken(authToken);
-  return auth();
-};
 
 /**
  * 1. CONTEXT
@@ -39,19 +31,17 @@ const isomorphicGetSession = async (headers: Headers) => {
  */
 export const createTRPCContext = async (opts: {
   headers: Headers;
-  session: Session | null;
-}) => {
-  const authToken = opts.headers.get("Authorization") ?? null;
-  const session = await isomorphicGetSession(opts.headers);
+  auth: Awaited<ReturnType<typeof auth>> | null;
+}): Promise<{ auth: Awaited<ReturnType<typeof auth>> }> => {
+  const authInfo = opts.auth ?? (await auth());
 
   const source = opts.headers.get("x-trpc-source") ?? "unknown";
-  console.log(">>> tRPC Request from", source, "by", session?.user);
+  console.log(">>> tRPC Request from", source, "by", authInfo.userId);
 
   await dbConnect();
 
   return {
-    session,
-    token: authToken,
+    auth: authInfo,
   };
 };
 
@@ -131,16 +121,25 @@ export const publicProcedure = t.procedure.use(timingMiddleware);
  *
  * @see https://trpc.io/docs/procedures
  */
-export const protectedProcedure = t.procedure
-  .use(timingMiddleware)
-  .use(({ ctx, next }) => {
-    if (!ctx.session?.user) {
-      throw new TRPCError({ code: "UNAUTHORIZED" });
-    }
-    return next({
-      ctx: {
-        // infers the `session` as non-nullable
-        session: { ...ctx.session, user: ctx.session.user },
-      },
-    });
+export const protectedProcedure: ProcedureBuilder<
+  {
+    auth: Awaited<ReturnType<typeof auth>>;
+  },
+  object,
+  {
+    auth: Awaited<ReturnType<typeof auth>>;
+  },
+  typeof unsetMarker,
+  typeof unsetMarker,
+  typeof unsetMarker,
+  typeof unsetMarker,
+  false
+> = t.procedure.use(timingMiddleware).use(({ ctx, next }) => {
+  if (!ctx.auth.userId) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+
+  return next({
+    ctx,
   });
+});
