@@ -16,7 +16,9 @@ export function AuthShowcase() {
         <SignUpButton />
       </SignedOut>
       <SignedIn>
-        <UserButton />
+        <div className="flex flex-row items-center justify-center gap-2">
+          <UserButton showName />
+        </div>
       </SignedIn>
     </div>
   );
