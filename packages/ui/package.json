@@ -17,7 +17,8 @@
     "./sidebar": "./src/sidebar.tsx",
     "./skeleton": "./src/skeleton.tsx",
     "./tooltip": "./src/tooltip.tsx",
-    "./use-mobile": "./hooks/use-mobile.ts"
+    "./use-mobile": "./hooks/use-mobile.ts",
+    "./card": "./src/card.tsx"
   },
   "license": "MIT",
   "scripts": {
