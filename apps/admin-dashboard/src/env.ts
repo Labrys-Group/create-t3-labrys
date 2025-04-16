@@ -16,7 +16,6 @@ export const env = createEnv({
   server: {
     MONGODB_URI: z.string(),
     CLERK_SECRET_KEY: z.string().optional(), // required for Clerk
-    CLERK_ADMIN_ORG_SLUG: z.string().optional(),
   },
 
   /**

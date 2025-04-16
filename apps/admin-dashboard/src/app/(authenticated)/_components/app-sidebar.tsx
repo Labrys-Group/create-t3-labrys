@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 
 import {
   Sidebar,
@@ -52,7 +52,6 @@ export const AppSidebar = () => {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter className="m-2 flex items-end justify-center">
-        <OrganizationSwitcher />
         <UserButton showName />
       </SidebarFooter>
     </Sidebar>
