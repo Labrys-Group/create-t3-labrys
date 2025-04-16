@@ -15,8 +15,19 @@ export const ContentTable = () => {
   const contentType = searchParams.get("contentType");
   const trpc = useTRPC();
   const { data: content } = useQuery(
-    trpc.content.getByType.queryOptions({ type: contentType as ContentType }),
+    trpc.content.getByType.queryOptions(
+      {
+        type: contentType as ContentType,
+      },
+      {
+        enabled: !!contentType,
+      },
+    ),
   );
+
+  if (!contentType) {
+    return null;
+  }
 
   return (
     <div>
