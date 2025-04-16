@@ -52,4 +52,9 @@ export const contentRouter = {
       const contentDoc = await Content.create(data);
       return contentDoc;
     }),
+  delete: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ input }) => {
+      await Content.findByIdAndDelete(input.id);
+    }),
 } satisfies TRPCRouterRecord;
