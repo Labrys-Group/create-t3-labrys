@@ -1,23 +1,20 @@
-"use client";
-
-import { FormProvider, useForm } from "react-hook-form";
-
-import { Input } from "@acme/ui/input";
-import { Label } from "@acme/ui/label";
+import { HydrateClient, prefetch, trpc } from "~/trpc/server";
+import { AddContentModal } from "./_components/add-content-modal";
+import { ContentTypeSelect } from "./_components/content-type-select";
 
 export default function ContentManagementPage() {
-  const form = useForm();
+  prefetch(trpc.content.getTypes.queryOptions());
+
   return (
-    <>
-      <div className="container mx-auto">
+    <HydrateClient>
+      <div className="container mx-auto flex flex-col gap-4">
         <h1 className="text-2xl font-bold">Content Management</h1>
-        <FormProvider {...form}>
-          <div>
-            <Label>Name</Label>
-            <Input {...form.register("name")} />
-          </div>
-        </FormProvider>
+
+        <div className="flex flex-row items-center gap-4">
+          <ContentTypeSelect />
+          <AddContentModal />
+        </div>
       </div>
-    </>
+    </HydrateClient>
   );
 }

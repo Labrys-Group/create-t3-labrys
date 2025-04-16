@@ -8,11 +8,15 @@ import { TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
 
 export enum ContentType {
   TEXT = "text",
+  URL = "url",
+  // add new content types here
 }
 
 export class ContentClass extends TimeStamps {
   /**
    * The type of content this category contains
+   *
+   * This should match the name of the zod schema set up in the API
    */
   @prop({ required: true, enum: ContentType })
   public type!: ContentType;

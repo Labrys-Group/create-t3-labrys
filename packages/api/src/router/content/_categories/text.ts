@@ -12,7 +12,5 @@ export const text = z.object({
   /**
    * Content
    */
-  content: z.object({
-    text: z.string(),
-  }),
+  content: z.string(),
 });

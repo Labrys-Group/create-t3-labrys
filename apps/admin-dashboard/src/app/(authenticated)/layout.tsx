@@ -8,7 +8,7 @@ export default function AuthenticatedLayout(props: {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main>
+      <main className="flex-1">
         <SidebarTrigger />
         {props.children}
       </main>

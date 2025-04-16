@@ -18,7 +18,9 @@
     "./skeleton": "./src/skeleton.tsx",
     "./tooltip": "./src/tooltip.tsx",
     "./use-mobile": "./hooks/use-mobile.ts",
-    "./card": "./src/card.tsx"
+    "./card": "./src/card.tsx",
+    "./select": "./src/select.tsx",
+    "./dialog": "./src/dialog.tsx"
   },
   "license": "MIT",
   "scripts": {
@@ -32,6 +34,7 @@
     "@hookform/resolvers": "^4.1.3",
     "@radix-ui/react-dialog": "^1.1.7",
     "@radix-ui/react-icons": "^1.3.2",
+    "@radix-ui/react-select": "^2.1.7",
     "@radix-ui/react-separator": "^1.1.3",
     "@radix-ui/react-slot": "^1.2.0",
     "@radix-ui/react-tooltip": "^1.2.0",
