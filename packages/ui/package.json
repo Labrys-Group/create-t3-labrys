@@ -20,7 +20,8 @@
     "./use-mobile": "./hooks/use-mobile.ts",
     "./card": "./src/card.tsx",
     "./select": "./src/select.tsx",
-    "./dialog": "./src/dialog.tsx"
+    "./dialog": "./src/dialog.tsx",
+    "./table": "./src/table.tsx"
   },
   "license": "MIT",
   "scripts": {

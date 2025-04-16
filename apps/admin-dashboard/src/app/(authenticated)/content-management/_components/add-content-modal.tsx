@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -49,11 +49,19 @@ export const AddContentModal = () => {
   });
 
   const trpc = useTRPC();
+  const queryClient = useQueryClient();
 
   const { mutate: addContent } = useMutation(
     trpc.content.add.mutationOptions({
-      onSuccess: () => {
+      onSuccess: async () => {
         form.reset();
+
+        // invalidate the query
+        await queryClient.invalidateQueries({
+          queryKey: trpc.content.getByType.queryKey({
+            type: contentType as ContentType,
+          }),
+        });
       },
     }),
   );

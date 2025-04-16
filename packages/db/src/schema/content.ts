@@ -1,5 +1,6 @@
 import {
   getModelForClass,
+  modelOptions,
   mongoose,
   prop,
   ReturnModelType,
@@ -12,6 +13,11 @@ export enum ContentType {
   // add new content types here
 }
 
+@modelOptions({
+  schemaOptions: {
+    collection: "content",
+  },
+})
 export class ContentClass extends TimeStamps {
   /**
    * The type of content this category contains
@@ -32,7 +38,7 @@ export class ContentClass extends TimeStamps {
    *
    * These will match the zod schema for the content type
    */
-  @prop({ required: true, type: () => [Object] })
+  @prop({ required: true, type: () => Object })
   public content!: object;
 }
 
