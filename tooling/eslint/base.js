@@ -83,6 +83,7 @@ export default tseslint.config(
           rule: "kebab-case",
         },
       ],
+      "no-warning-comments": "warn",
     },
   },
   // apply to all files, but not to pages or layouts
