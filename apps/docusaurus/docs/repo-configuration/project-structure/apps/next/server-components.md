@@ -1,6 +1,6 @@
 # Server Components with tRPC
 
-Next.js 14 with the App Router makes heavy use of React Server Components (RSC), which can be powerful but require specific patterns when working with tRPC. This guide explains how to effectively use Server Components with the tRPC setup in this monorepo.
+Next.js 15 with the App Router makes heavy use of React Server Components (RSC), which can be powerful but require specific patterns when working with tRPC. This guide explains how to effectively use Server Components with the tRPC setup in this monorepo.
 
 ## Understanding Server vs. Client Components
 
@@ -523,6 +523,20 @@ export function LikeButton({ postId, initialLikes }: { postId: string, initialLi
   );
 }
 ```
+
+## Why Use tRPC Over Server Actions?
+
+> **Important Note:** While Next.js 15 introduces Server Actions as a built-in solution for data mutations, we still recommend using tRPC in this monorepo. tRPC provides superior code organization, better type safety across your entire application, and more flexibility.
+
+Key advantages of using tRPC over Server Actions:
+
+- **Better Code Organization**: tRPC routers provide clear separation of concerns and centralized API definitions.
+- **Easier Transition Between Server/Client**: tRPC queries can be easily converted from server to client components when requirements change.
+- **Superior for Mutations**: tRPC offers more robust patterns for mutations with optimistic updates and error handling.
+- **Consistent Development Experience**: Using tRPC for both queries and mutations creates a more cohesive developer experience.
+- **Type Safety Across Boundaries**: End-to-end type safety between your backend, frontend, and even mobile applications.
+
+While Server Actions are a valid approach for simple applications, tRPC provides significant benefits for larger, more complex applications with multiple frontends (web and mobile).
 
 ## Conclusion
 
