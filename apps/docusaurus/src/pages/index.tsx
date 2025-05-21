@@ -337,9 +337,6 @@ export default function Home(): ReactNode {
           <SetupStepsSection />
           <NextStepsSection />
           <PathwaySection />
-          <BestPracticesSection />
-          <UIGuidanceSection />
-
           <div className={styles.docLinks}>
             <Heading as="h2">Documentation Links</Heading>
             <div className={styles.docLinksContainer}>
@@ -363,6 +360,8 @@ export default function Home(): ReactNode {
               </Link>
             </div>
           </div>
+          <BestPracticesSection />
+          <UIGuidanceSection />
         </div>
       </main>
     </Layout>
