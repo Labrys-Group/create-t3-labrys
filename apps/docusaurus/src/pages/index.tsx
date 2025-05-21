@@ -8,15 +8,6 @@ import clsx from "clsx";
 
 import styles from "./index.module.css";
 
-function WarningBanner() {
-  return (
-    <div className={styles.warningBanner}>
-      <strong>Important:</strong> Before using this template, complete the
-      repository setup steps below!
-    </div>
-  );
-}
-
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -330,7 +321,6 @@ export default function Home(): ReactNode {
       title={siteConfig.title}
       description="T3 Stack monorepo with Next.js, tRPC, and MongoDB"
     >
-      <WarningBanner />
       <HomepageHeader />
       <main>
         <div className={styles.mainContainer}>
