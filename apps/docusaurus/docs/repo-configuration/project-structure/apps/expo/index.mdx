@@ -1,0 +1,45 @@
+# Expo Application
+
+:::tip
+The `apps/expo` folder can be safely deleted if you are not using Expo in your project. It is included to demonstrate how
+to set up multiple apps within the same monorepo.
+:::
+
+This is the mobile application of the monorepo, built with Expo and React Native. Like the `nextjs` folder, it's named after the primary technology it uses for clear identification.
+
+## Application Structure
+
+The Expo application is organized as follows:
+
+```
+apps/expo/
+├── assets/           # Images, fonts, and other static assets
+├── src/
+│   ├── app/          # Expo Router structure
+│   │   ├── _layout.tsx  # Root layout 
+│   │   ├── index.tsx    # Home screen
+│   │   └── post/        # Post-related screens
+│   ├── utils/         # Utility functions
+│   └── styles.css     # Global styles (with Tailwind)
+```
+
+## Features
+
+- **Expo SDK 51**
+- **React Native** with **React 18**
+- **Expo Router** for navigation
+- **NativeWind** for Tailwind CSS in React Native
+- **tRPC** for end-to-end type-safe API calls
+- Integration with shared packages from the monorepo
+
+## Key Files
+
+- `src/app/_layout.tsx`: The root layout that sets up navigation and providers
+- `src/app/index.tsx`: The home screen
+- `src/utils/api.tsx`: tRPC client configuration
+- `src/utils/auth.ts`: Authentication utilities for Clerk
+
+import { useCurrentSidebarCategory } from "@docusaurus/theme-common";
+import DocCardList from "@theme/DocCardList";
+
+<DocCardList items={useCurrentSidebarCategory().items} />

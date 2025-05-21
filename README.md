@@ -16,11 +16,11 @@ To run Docusaurus:
 
 ```bash
 pnpm i
-cd apps/documentation
+cd apps/docusaurus
 pnpm start
 ```
 
-Or you can visit the hosted documentation [available here](https://create-t3-turbo-mongo-documentation.vercel.app/).
+Or you can visit the hosted documentation [available here](https://create-t3-turbo-mongo-docusaurus.vercel.app/).
 
 ## Quick Start (Without Expo)
 

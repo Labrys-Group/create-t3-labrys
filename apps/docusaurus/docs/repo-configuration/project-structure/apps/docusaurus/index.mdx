@@ -1,0 +1,40 @@
+# Docusaurus App
+
+This is the documentation site for the monorepo, built with Docusaurus. Like the other apps, it's named after its purpose for clear identification.
+
+## Application Structure
+
+The documentation app is organized as follows:
+
+```
+apps/docusaurus/
+├── api/              # Simple authentication server for protected docs
+├── docs/             # Documentation content organized by sections
+│   ├── project-docs/   # Project-specific documentation
+│   └── repo-configuration/ # Monorepo setup documentation
+├── src/              # Custom Docusaurus components
+│   ├── components/     # Reusable UI components
+│   ├── css/            # Global CSS styles
+│   ├── pages/          # Landing pages
+│   └── theme/          # Theme customizations
+└── static/           # Static assets like images and icons
+```
+
+## Features
+
+- **Docusaurus 3** for documentation site generation
+- **React 19** for UI components
+- **MDX** support for interactive documentation
+- **Clerk** integration for authenticated documentation
+- Theme customization for brand consistency
+
+## Key Files
+
+- `docusaurus.config.ts`: Main configuration file for Docusaurus
+- `sidebars.ts`: Documentation sidebar structure
+- `api/server.mjs`: Authentication server for protected documentation
+
+import { useCurrentSidebarCategory } from "@docusaurus/theme-common";
+import DocCardList from "@theme/DocCardList";
+
+<DocCardList items={useCurrentSidebarCategory().items} />

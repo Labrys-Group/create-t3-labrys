@@ -1,0 +1,148 @@
+---
+sidebar_position: 1
+---
+
+# Project Structure
+
+:::info Project Structure Overview
+This monorepo is organized into three main sections:
+
+- **Apps**: The main applications (Next.js, Expo, and Documentation). This is where you would put a new application (eg. admin dashboard).
+- **Packages**: Shared libraries and utilities used across apps.
+- **Tooling**: Configuration files and development tools.
+
+Browse through the sections below to learn more about each part.
+:::
+
+:::caution Strict Code Organization
+This monorepo follows a strict code organization pattern where each piece of functionality belongs in its specific location:
+
+- **API code** (tRPC routers, procedures) must only be placed in the `packages/api` package
+- **Database models and queries** must only be placed in the `packages/db` package
+- **Shared UI components** (including shadcn/ui components) must only be placed in the `packages/ui` package
+- **Authentication logic** must only be placed in the `packages/auth` package
+
+Maintaining this separation ensures proper code reuse across applications, prevents duplication, and makes the codebase more maintainable.
+:::
+
+:::tip
+The `apps/expo` folder can be safely deleted if you are not using Expo in your project. It is included to demonstrate how
+to set up multiple apps within the same monorepo.
+:::
+
+## Configuration Directories
+
+```
+.github/
+└── workflows/
+    └── CI with pnpm cache setup
+
+.vscode/
+└── Recommended extensions and settings for VSCode/Cursor users
+```
+
+These directories contain configuration for GitHub workflows and VS Code:
+
+- **.github**: Contains GitHub Actions workflows for CI/CD pipelines
+- **.vscode**: Contains workspace settings and recommended extensions for VS Code and Cursor users
+
+import { useCurrentSidebarCategory } from "@docusaurus/theme-common";
+import DocCardList from "@theme/DocCardList";
+
+## Apps
+
+The main applications in the repo.
+
+```
+apps/
+├── expo/             # Mobile application
+│   ├── Expo SDK 51
+│   ├── React Native using React 18
+│   ├── Navigation using Expo Router
+│   ├── Tailwind using NativeWind
+│   └── Typesafe API calls using tRPC
+│
+├── documentation/    # Documentation site
+│   └── Docusaurus site for project documentation
+│
+└── nextjs/           # Web application
+    ├── Next.js 14
+    ├── React 18
+    ├── Tailwind CSS
+    └── E2E Typesafe API Server & Client
+```
+
+### App Naming Conventions
+
+The apps in this monorepo follow a simple naming convention based on the technology they use:
+
+#### `apps/nextjs`
+
+This is your main web application built with Next.js. It's named "nextjs" to clearly indicate the framework being used, making it easier to understand the technology stack at a glance. This naming convention is particularly helpful in monorepos where you might have multiple web applications using different frameworks.
+
+#### `apps/expo`
+
+This is your mobile application built with Expo and React Native. Again, it's named after the primary technology it uses.
+
+#### `apps/documentation`
+
+This is a Docusaurus site that contains this documentation.
+
+<DocCardList
+  items={
+    useCurrentSidebarCategory().items.find((item) => item.label === "Apps")
+      ?.items || []
+  }
+/>
+
+## Packages
+
+Shared packages used by the main applications. These packages contain code that needs to be used across multiple apps, promoting code reuse and maintainability.
+
+```
+packages/
+├── api/              # API layer
+│   └── tRPC v11 router definition and ALL API related code
+│
+├── auth/             # Authentication
+│   └── Authentication using next-auth
+│
+├── db/               # Database
+│   └── Typesafe db calls using Typegoose & MongoDB
+│
+└── ui/               # User interface
+    └── Start of a UI package for the webapp using shadcn-ui
+```
+
+<DocCardList
+  items={
+    useCurrentSidebarCategory().items.find((item) => item.label === "Packages")
+      ?.items || []
+  }
+/>
+
+## Tooling
+
+Shared development tools and configurations. These ensure consistent code style, quality, and behavior across all apps and packages in the monorepo.
+
+```
+tooling/
+├── eslint/           # Shared ESLint configurations
+│   └── shared, fine-grained, eslint presets
+│
+├── prettier/         # Shared Prettier configurations
+│   └── shared prettier configuration
+│
+├── tailwind/         # Shared Tailwind CSS configurations
+│   └── shared tailwind configuration
+│
+└── typescript/       # Shared TypeScript configurations
+    └── shared tsconfig you can extend from
+```
+
+These tooling packages provide:
+
+- **Consistent Code Style**: Through shared ESLint and Prettier configurations
+- **Unified UI Framework**: With shared Tailwind CSS configuration
+- **Type Safety**: With shared TypeScript configurations
+- **Developer Experience**: Common configurations reduce setup time for new apps

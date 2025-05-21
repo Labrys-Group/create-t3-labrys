@@ -1,8 +1,0 @@
-{
-  "label": "Apps",
-  "position": 1,
-  "link": {
-    "type": "generated-index",
-    "description": "The main applications in the repo."
-  }
-}

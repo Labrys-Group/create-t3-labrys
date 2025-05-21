@@ -20,7 +20,7 @@ pnpm dev
 pnpm dev:next
 
 # Start the documentation site
-cd apps/documentation
+cd apps/docusaurus
 pnpm start
 
 # Start Expo app (iOS)
@@ -41,7 +41,7 @@ pnpm build
 # Build a specific app
 pnpm -F @acme/nextjs build
 pnpm -F @acme/expo build
-pnpm -F documentation build
+pnpm -F docusaurus build
 ```
 
 ### Testing
@@ -109,7 +109,7 @@ This repository is a T3 stack monorepo built with Turborepo, consisting of:
 1. **Apps**:
    - **nextjs**: Main web application (Next.js 14, React 19)
    - **expo**: Mobile application (Expo, React Native) [optional]
-   - **documentation**: Docusaurus site with project documentation
+   - **docusaurus**: Docusaurus site with project documentation
 
 2. **Packages**:
    - **api**: tRPC router definitions
@@ -165,8 +165,8 @@ Required environment variables (defined in `.env`):
 The built-in documentation site provides detailed information about the project. Run it locally:
 
 ```bash
-cd apps/documentation
+cd apps/docusaurus
 pnpm start
 ```
 
-Or visit the hosted version: [https://create-t3-turbo-mongo-documentation.vercel.app/](https://create-t3-turbo-mongo-documentation.vercel.app/)
+Or visit the hosted version: [https://create-t3-turbo-mongo-docusaurus.vercel.app/](https://create-t3-turbo-mongo-docusaurus.vercel.app/)

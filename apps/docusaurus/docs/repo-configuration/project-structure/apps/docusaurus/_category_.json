@@ -1,0 +1,8 @@
+{
+  "label": "Docusaurus",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "The Docusaurus documentation site for this project."
+  }
+}

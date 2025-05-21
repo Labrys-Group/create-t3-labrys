@@ -1,0 +1,51 @@
+# Database Setup
+
+---
+tags:
+  - Repo setup
+---
+
+:::note
+This document provides an overview of the database setup. For detailed information on the database package implementation, please refer to the [Database Package](/docs/repo-configuration/project-structure/packages/db) documentation.
+:::
+
+## Overview
+
+This repo uses [MongoDB](https://www.mongodb.com/) as the database. The MongoDB implementation is provided through the `@acme/db` package.
+
+## Key Features
+
+- Type-safe MongoDB models using Typegoose
+- Connection management for both raw MongoDB access and Mongoose ODM
+- Database schema definitions with validation
+- Docker configuration for local MongoDB development
+
+## Getting Started
+
+To start using the database:
+
+1. Configure the MongoDB connection in your `.env` file:
+   ```
+   MONGODB_URI=mongodb://localhost:27017/your-database
+   ```
+
+2. For local development with Docker, run:
+   ```bash
+   docker-compose -f packages/db/docker-compose.yml up -d
+   ```
+
+## Hot Reloading Limitation
+
+:::warning
+Currently during local development the database package will not hot reload when the schema changes. This means that you will need to restart the Next.js server to see the changes.
+:::
+
+## Learn More
+
+For detailed information about the database implementation, including:
+- Database models
+- Connection management
+- Database operations
+- Adding new models
+
+Please see the [Database Package](/docs/repo-configuration/project-structure/packages/db) documentation.

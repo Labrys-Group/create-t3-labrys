@@ -1,0 +1,8 @@
+{
+  "label": "Packages",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Shared packages used by the main applications. These packages contain code that needs to be used across multiple apps, promoting code reuse and maintainability."
+  }
+}
