@@ -1,7 +1,5 @@
 name: mongodb
 
-version: "3.8"
-
 services:
   mongo1:
     image: mongo:7.0
