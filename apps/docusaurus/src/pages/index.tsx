@@ -16,18 +16,6 @@ function WarningBanner() {
   );
 }
 
-function AcmeReplacementNote() {
-  return (
-    <div className={styles.acmeReplacementNote}>
-      <div className={styles.acmeReplacementIcon}>⚠️</div>
-      <div>
-        <strong>TODO:</strong> Replace "acme" in package names with your project
-        name in all files
-      </div>
-    </div>
-  );
-}
-
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -60,7 +48,6 @@ function SetupStepsSection() {
   return (
     <div className={styles.setupStepsSection}>
       <Heading as="h2">Repository Setup Checklist</Heading>
-      <AcmeReplacementNote />
       <div className={styles.setupStepsContainer}>
         <div className={styles.setupStep}>
           <div className={styles.setupStepNumber}>1</div>
