@@ -246,7 +246,7 @@ All shadcn/ui components must be added to this package, rather than directly in 
 
 The CLI will:
 1. Add the component to `src/`
-2. Update `package.json` exports
+2. Automatically update `package.json` exports
 3. Format the new component file
 
 ### Manual Component Creation
@@ -255,7 +255,7 @@ To create a component manually:
 
 1. Create a new file in `packages/ui/src/` (e.g., `card.tsx`)
 2. Implement the component using Radix UI primitives as needed
-3. Add to the exports in `package.json`
+3. Run `pnpm update-exports` to automatically update the exports in `package.json`, or manually add it to the exports field
 
 Example of a manually created component:
 

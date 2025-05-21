@@ -19,7 +19,8 @@
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "ui-add": "pnpm dlx shadcn@latest add && prettier src --write --list-different"
+    "ui-add": "pnpm dlx shadcn@latest add && node scripts/update-exports.js && prettier src --write --list-different",
+    "update-exports": "node scripts/update-exports.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
