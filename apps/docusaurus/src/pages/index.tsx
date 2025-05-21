@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import CodeBlock from "@theme/CodeBlock";
 import Heading from "@theme/Heading";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
@@ -60,12 +61,8 @@ function SetupStepsSection() {
           <div className={styles.setupStepContent}>
             <Heading as="h3">Initial Setup</Heading>
             <p>Install dependencies and copy environment variables</p>
-            <div className={styles.codeBlock}>
-              <code>pnpm i</code>
-            </div>
-            <div className={styles.codeBlock}>
-              <code>cp .env.example .env</code>
-            </div>
+            <CodeBlock language="bash">pnpm i</CodeBlock>
+            <CodeBlock language="bash">cp .env.example .env</CodeBlock>
             <div className={styles.setupLinks}>
               <Link
                 className="button button--primary button--sm"
@@ -88,11 +85,9 @@ function SetupStepsSection() {
           <div className={styles.setupStepContent}>
             <Heading as="h3">Database Configuration</Heading>
             <p>Spin up MongoDB with Docker and validate connection</p>
-            <div className={styles.codeBlock}>
-              <code>
-                docker-compose -f packages/db/docker-compose.yml up -d
-              </code>
-            </div>
+            <CodeBlock language="bash">
+              docker-compose -f packages/db/docker-compose.yml up -d
+            </CodeBlock>
             <div className={styles.setupLinks}>
               <Link
                 className="button button--primary button--sm"
@@ -109,9 +104,7 @@ function SetupStepsSection() {
           <div className={styles.setupStepContent}>
             <Heading as="h3">Start the Web App</Heading>
             <p>Start the Next.js application</p>
-            <div className={styles.codeBlock}>
-              <code>pnpm dev:next</code>
-            </div>
+            <CodeBlock language="bash">pnpm dev:next</CodeBlock>
           </div>
         </div>
 
@@ -136,9 +129,7 @@ function SetupStepsSection() {
           <div className={styles.setupStepContent}>
             <Heading as="h3">Optional: Remove Expo</Heading>
             <p>If you're not building a mobile app, safely remove Expo</p>
-            <div className={styles.codeBlock}>
-              <code>rm -rf apps/expo</code>
-            </div>
+            <CodeBlock language="bash">rm -rf apps/expo</CodeBlock>
           </div>
         </div>
       </div>
@@ -193,9 +184,7 @@ function UIGuidanceSection() {
           </div>
 
           <p>Add new UI components using the CLI:</p>
-          <div className={styles.codeBlock}>
-            <code>pnpm ui-add</code>
-          </div>
+          <CodeBlock language="bash">pnpm ui-add</CodeBlock>
           <Link
             className="button button--outline button--sm"
             to="/docs/repo-configuration/project-structure/packages/ui"
@@ -251,6 +240,39 @@ function PathwaySection() {
           <div className={styles.pathwayStepIcon}>♻️</div>
           <div className={styles.pathwayStepText}>5. Continuous Deployment</div>
           <div className={styles.pathwayStepDesc}>CI/CD pipeline</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function NextStepsSection() {
+  return (
+    <div className={styles.nextStepsSection}>
+      <Heading as="h2">Next Steps</Heading>
+      <div className={styles.nextStepsContainer}>
+        <div className={styles.nextStep}>
+          <div className={styles.nextStepIcon}>🚀</div>
+          <div className={styles.nextStepContent}>
+            <Heading as="h3">Deploy Your Applications</Heading>
+            <p>
+              Follow these guides to deploy your applications to production:
+            </p>
+            <div className={styles.setupLinks}>
+              <Link
+                className="button button--primary button--sm"
+                to="/docs/repo-configuration/project-structure/apps/next/vercel-deployment"
+              >
+                Next.js Deployment →
+              </Link>
+              <Link
+                className="button button--primary button--sm"
+                to="/docs/repo-configuration/project-structure/apps/docusaurus/deployment"
+              >
+                Docusaurus Deployment →
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -313,6 +335,7 @@ export default function Home(): ReactNode {
       <main>
         <div className={styles.mainContainer}>
           <SetupStepsSection />
+          <NextStepsSection />
           <PathwaySection />
           <BestPracticesSection />
           <UIGuidanceSection />

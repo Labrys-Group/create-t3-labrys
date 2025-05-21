@@ -317,6 +317,49 @@
   }
 }
 
+/* Next Steps Section */
+.nextStepsSection {
+  padding: 2rem;
+  background-color: var(--ifm-color-emphasis-100);
+  border-radius: 8px;
+}
+
+.nextStepsSection h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.nextStepsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.nextStep {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background-color: var(--ifm-color-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.nextStepIcon {
+  font-size: 2rem;
+  color: var(--ifm-color-primary);
+  margin-top: 0.5rem;
+}
+
+.nextStepContent {
+  flex: 1;
+}
+
+.nextStepContent h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
 /* Best Practices Section */
 .bestPracticesSection {
   padding: 2rem;
