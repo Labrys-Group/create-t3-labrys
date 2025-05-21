@@ -1,11 +1,11 @@
-# create-t3-turbo-mongo
+# create-t3-labrys
 
 ## Installation
 
-There are two ways of initializing an app using the `create-t3-turbo-mongo` starter. You can either use this repository as a template, or use Turbo's CLI to init your project (use PNPM as package manager):
+There are two ways of initializing an app using the `create-t3-labrys` starter. You can either use this repository as a template, or use Turbo's CLI to init your project (use PNPM as package manager):
 
 ```bash
-npx create-turbo@latest -e https://github.com/Labrys-Group/create-t3-turbo-mongo
+npx create-turbo@latest -e https://github.com/Labrys-Group/create-t3-labrys
 ```
 
 ## Documentation
