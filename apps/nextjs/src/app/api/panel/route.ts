@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { appRouter } from "@acme/api";
+import { appRouter } from "@project-name/api";
 
 import { env } from "~/env";
 

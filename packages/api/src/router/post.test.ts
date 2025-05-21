@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 
-import { Post } from "@acme/db";
+import { Post } from "@project-name/db";
 
 import {
   makeTestCaller,
