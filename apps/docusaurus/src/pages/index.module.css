@@ -26,8 +26,8 @@
 .warningText {
   margin: 0.75rem 0 1rem;
   padding: 0.5rem 1rem;
-  background-color: #fef3c7; /* amber-100 */
-  color: #92400e; /* amber-800 */
+  background-color: #dbeafe; /* blue-100 */
+  color: #1e40af; /* blue-800 */
   border-radius: 6px;
   font-weight: bold;
   display: inline-block;
@@ -191,12 +191,12 @@
   flex-shrink: 0;
 }
 
-.bestPracticeItem:has(.bestPracticeIcon:contains('✓')) .bestPracticeIcon {
+.bestPracticeItem:has(.bestPracticeIcon:contains("✓")) .bestPracticeIcon {
   background-color: #d1fae5; /* green-100 */
   color: #047857; /* green-700 */
 }
 
-.bestPracticeItem:has(.bestPracticeIcon:contains('✘')) .bestPracticeIcon {
+.bestPracticeItem:has(.bestPracticeIcon:contains("✘")) .bestPracticeIcon {
   background-color: #fee2e2; /* red-100 */
   color: #b91c1c; /* red-700 */
 }
@@ -269,11 +269,11 @@
   .pathway {
     grid-template-columns: auto auto;
   }
-  
+
   .pathwayArrow {
     transform: rotate(90deg);
   }
-  
+
   .pathway > .pathwayArrow:nth-of-type(even) {
     grid-column: 1 / span 2;
     margin: 0.5rem 0;
@@ -284,7 +284,7 @@
   .pathway {
     grid-template-columns: auto;
   }
-  
+
   .pathwayArrow {
     transform: rotate(90deg);
     grid-column: 1;
