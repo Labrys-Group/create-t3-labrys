@@ -4,6 +4,23 @@ sidebar_position: 1
 
 # Project Structure
 
+:::info Project Structure Overview
+This monorepo is organized into three main sections:
+
+- **Apps**: The main applications (Next.js and Expo)
+- **Packages**: Shared libraries and utilities used across apps
+- **Tooling**: Configuration files and development tools
+
+Browse through the sections below to learn more about each part.
+:::
+
+:::tip
+
+The `apps/expo` folder can be safely deleted if you are not using Expo in your project. It is included to demonstrate how
+to set up multiple apps within the same monorepo.
+
+:::
+
 {/* Use the following link to edit this file structure diagram */}
 {/* Click share and replace the following URL when you make changes */}
 {/* https://tree.nathanfriend.com/?s=(%27optQs!(%27fancy!true~fullPaqY~trailXgSlashY~rootDotY)~source!(%27source!%27.giqub*workflows0CI%20wiqZnpmJachLsetupH.vscode*Recommendez_ensQs%20anzsettXgs%20foOVSCode%2FCursoOusersHapps*expo0Expo%20SDK%20510GNative3G180NavigatQ3Expo%20Router0T93NativeWXd07APIJalls3tRPC*n_.js0N_.js%20140G180T9%20CSS0E2E%207API%20ServeO%26%20ClientHpackages*api0tRPC%20v11%20routeOdefXitQ*auq0AuqenticatQ3n_-auq*db07dbJalls3TypegoosL%26%20MongoDB*ui0Start%20of%20a%20UIZackagLfoOqLwebapp3shadcn-uiHtoolXg*eslXt6%2C%20fXe-graXed%2C%20eslXtZresets*prettier6ZrettierF96%20t9Fypescript6%20tsconfig%20youJan%20_enzfrom%27)~versQ!%271%27)*H%20%200*%20%203%20usXg%206*%20shared7TypesafL9ailwXdFJonfiguratQ*tGReact%20H%5CnJ%20cLe%20Or%20QionXinY!falseZ%20p_extqthzd%20%01zq_ZYXQOLJHGF97630* */}
@@ -21,7 +38,7 @@ apps
 │   ├── Navigation using Expo Router
 │   ├── Tailwind using NativeWind
 │   └── Typesafe API calls using tRPC
-└── next.js
+└── nextjs
     ├── Next.js 14
     ├── React 18
     ├── Tailwind CSS
@@ -51,6 +68,8 @@ import DocCardList from "@theme/DocCardList";
 
 ## Apps
 
+The main applications in the repo.
+
 <DocCardList
   items={
     useCurrentSidebarCategory().items.find((item) => item.label === "Apps")
@@ -59,6 +78,8 @@ import DocCardList from "@theme/DocCardList";
 />
 
 ## Packages
+
+Helper packages used by the main applications.
 
 <DocCardList
   items={
