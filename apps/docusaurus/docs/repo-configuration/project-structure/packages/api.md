@@ -101,7 +101,7 @@ The `tests/test-caller.ts` file provides utilities for testing tRPC procedures:
 ## Integration with Other Packages
 
 - **@project-name/db**: Uses MongoDB models for database operations
-- **@project-nameect-name/validators**: Imports Zod schemas for input validation
+- **@project-name/validators**: Imports Zod schemas for input validation
 
 ## Type Inference Helpers
 

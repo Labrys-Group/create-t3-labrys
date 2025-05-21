@@ -22,7 +22,7 @@ const config = {
     "<THIRD_PARTY_MODULES>",
     "",
     "<TYPES>^@project-name",
-    "^@project-nameect-name/(.*)$",
+    "^@project-name/(.*)$",
     "",
     "<TYPES>^[.|..|~]",
     "^~/",

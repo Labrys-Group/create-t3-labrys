@@ -21,8 +21,8 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@project-nameect-name/db": "workspace:*",
-    "@project-nameect-name/validators": "workspace:*",
+    "@project-name/db": "workspace:*",
+    "@project-name/validators": "workspace:*",
     "@clerk/nextjs": "^6.14.3",
     "@swc/core": "^1.10.18",
     "@trpc/server": "catalog:",
@@ -33,16 +33,16 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@project-nameect-name/eslint-config": "workspace:*",
-    "@project-nameect-name/prettier-config": "workspace:*",
-    "@project-nameect-name/tsconfig": "workspace:*",
+    "@project-name/eslint-config": "workspace:*",
+    "@project-name/prettier-config": "workspace:*",
+    "@project-name/tsconfig": "workspace:*",
     "dotenv-cli": "^8.0.0",
     "eslint": "catalog:",
     "mongodb-memory-server": "^10.1.4",
     "prettier": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@project-nameect-name/prettier-config",
+  "prettier": "@project-name/prettier-config",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",

@@ -8,7 +8,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 
-import { Button } from "@acme/ui/button";
+import { Button } from "@project-name/ui/button";
 
 export function AuthShowcase() {
   return (

@@ -1,6 +1,6 @@
 import type { TRPCRouterRecord } from "@trpc/server";
 import { Post } from "@project-name/db";
-import { CreatePostSchema } from "@project-nameect-name/validators";
+import { CreatePostSchema } from "@project-name/validators";
 import { z } from "zod";
 
 import { protectedProcedure, publicProcedure } from "../trpc";

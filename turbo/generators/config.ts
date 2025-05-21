@@ -28,8 +28,8 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
     actions: [
       (answers) => {
         if ("name" in answers && typeof answers.name === "string") {
-          if (answers.name.startsWith("@project-nameect-name/")) {
-            answers.name = answers.name.replace("@project-nameect-name/", "");
+          if (answers.name.startsWith("@project-name/")) {
+            answers.name = answers.name.replace("@project-name/", "");
           }
         }
         return "Config sanitized";

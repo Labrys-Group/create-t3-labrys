@@ -17,11 +17,11 @@
     "prettier-plugin-tailwindcss": "^0.6.11"
   },
   "devDependencies": {
-    "@project-nameect-name/tsconfig": "workspace:*",
+    "@project-name/tsconfig": "workspace:*",
     "@types/node": "^22.13.11",
     "typescript": "catalog:"
   },
-  "prettier": "@project-nameect-name/prettier-config",
+  "prettier": "@project-name/prettier-config",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",

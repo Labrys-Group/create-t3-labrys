@@ -22,14 +22,14 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@project-nameect-name/eslint-config": "workspace:*",
-    "@project-nameect-name/prettier-config": "workspace:*",
-    "@project-nameect-name/tsconfig": "workspace:*",
+    "@project-name/eslint-config": "workspace:*",
+    "@project-name/prettier-config": "workspace:*",
+    "@project-name/tsconfig": "workspace:*",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@project-nameect-name/prettier-config",
+  "prettier": "@project-name/prettier-config",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",

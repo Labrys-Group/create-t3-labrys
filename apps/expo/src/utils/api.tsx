@@ -48,4 +48,4 @@ export const trpc = createTRPCOptionsProxy<AppRouter>({
 export {
   type RouterInputs,
   type RouterOutputs,
-} from "@project-nameect-name/api";
+} from "@project-name/api";

@@ -1,8 +1,8 @@
 "use client";
 
 import type { RouterOutputs } from "@project-name/api";
-import { cn } from "@project-nameect-name/ui";
-import { Button } from "@project-nameect-name/ui/button";
+import { cn } from "@project-name/ui";
+import { Button } from "@project-name/ui/button";
 import {
   Form,
   FormControl,
@@ -10,10 +10,10 @@ import {
   FormItem,
   FormMessage,
   useForm,
-} from "@project-nameect-name/ui/form";
-import { Input } from "@project-nameect-name/ui/input";
-import { toast } from "@project-nameect-name/ui/toast";
-import { CreatePostSchema } from "@project-nameect-name/validators";
+} from "@project-name/ui/form";
+import { Input } from "@project-name/ui/input";
+import { toast } from "@project-name/ui/toast";
+import { CreatePostSchema } from "@project-name/validators";
 import {
   useMutation,
   useQueryClient,

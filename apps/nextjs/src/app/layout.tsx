@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { cn } from "@project-name/ui";
-import { ThemeProvider, ThemeToggle } from "@project-nameect-name/ui/theme";
-import { Toaster } from "@project-nameect-name/ui/toast";
+import { ThemeProvider, ThemeToggle } from "@project-name/ui/theme";
+import { Toaster } from "@project-name/ui/toast";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 

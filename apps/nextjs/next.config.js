@@ -7,7 +7,7 @@ createJiti(fileURLToPath(import.meta.url))("./src/env");
 /** @type {import("next").NextConfig} */
 const config = {
   /** Enables hot reloading for local packages without a build step */
-  transpilePackages: ["@acme/api", "@acme/db", "@acme/ui", "@acme/validators"],
+  transpilePackages: ["@project-name/api", "@project-name/db", "@project-name/ui", "@project-name/validators"],
 
   /** We already do linting and typechecking as separate tasks in CI */
   eslint: { ignoreDuringBuilds: true },
