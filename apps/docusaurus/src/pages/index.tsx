@@ -26,8 +26,8 @@ function HomepageHeader() {
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <p className={styles.warningText}>
-          📢 Note: Replace all instances of "acme" in the repo with your project
-          name using find and replace in your IDE.
+          📢 Note: Replace all instances of "project-name" in the repo with your
+          project name using find and replace in your IDE.
         </p>
         <div className={styles.buttons}>
           <Link

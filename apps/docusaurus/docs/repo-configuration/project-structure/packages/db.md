@@ -9,6 +9,7 @@ All database models, schemas, and direct database access code must be placed in 
 ## Overview
 
 This package implements:
+
 - Type-safe MongoDB models using Typegoose
 - Connection management for both direct MongoDB access and Mongoose ODM
 - Database schema definitions with validation
@@ -39,7 +40,7 @@ The `db.ts` file provides access to the raw MongoDB Node.js driver:
 
 ```typescript
 // Example usage of the MongoDB client
-import clientPromise from "@acme/db/db";
+import clientPromise from "@project-name/db/db";
 
 const mongodb = await clientPromise;
 const db = mongodb.db();
@@ -47,6 +48,7 @@ const posts = await db.collection("posts").find({}).toArray();
 ```
 
 This approach:
+
 - Uses the MongoDB Node.js driver directly
 - Provides more flexibility for complex queries
 - Creates a singleton client to avoid connection limits
@@ -58,14 +60,15 @@ The `dbConnect.ts` file manages connections for Mongoose and Typegoose:
 
 ```typescript
 // Example of using dbConnect with models
-import dbConnect from "@acme/db/dbConnect";
-import { Post } from "@acme/db";
+import { Post } from "@project-name/db";
+import dbConnect from "@project-name/db/dbConnect";
 
 await dbConnect();
 const posts = await Post.find({}).limit(10);
 ```
 
 This approach:
+
 - Uses Mongoose ODM with Typegoose for object modeling
 - Provides a cleaner, more object-oriented interface
 - Handles connection caching to avoid duplicate connections
@@ -88,6 +91,7 @@ export class PostClass extends TimeStamps {
 ```
 
 Features:
+
 - Collection name: "posts"
 - Automatic timestamps (createdAt, updatedAt)
 - Required title and content fields
@@ -114,6 +118,7 @@ export class UserClass {
 ```
 
 Features:
+
 - Collection name: "users"
 - Compatible with Clerk authentication
 - Optional fields for user data
@@ -139,6 +144,7 @@ docker-compose -f packages/db/docker-compose.yml up -d
 ```
 
 Features:
+
 - MongoDB 7.0 replica set (3 nodes)
 - Persistent data volumes
 - Automatic replica set initialization
@@ -146,16 +152,18 @@ Features:
 
 ## Environment Variables
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `MONGODB_URI` | MongoDB connection string | Yes |
+| Variable      | Description               | Required |
+| ------------- | ------------------------- | -------- |
+| `MONGODB_URI` | MongoDB connection string | Yes      |
 
 Example connection string:
+
 ```
 MONGODB_URI=mongodb://localhost:27017/your-database
 ```
 
 For replica set:
+
 ```
 MONGODB_URI=mongodb://localhost:27017,localhost:27018,localhost:27019/your-database?replicaSet=rs0
 ```
@@ -165,7 +173,7 @@ MONGODB_URI=mongodb://localhost:27017,localhost:27018,localhost:27019/your-datab
 ### Querying Data
 
 ```typescript
-import { Post } from "@acme/db";
+import { Post } from "@project-name/db";
 
 // Find all posts
 const allPosts = await Post.find();
@@ -180,30 +188,30 @@ const filteredPosts = await Post.find({ title: { $regex: "search" } });
 ### Creating Data
 
 ```typescript
-import { Post } from "@acme/db";
+import { Post } from "@project-name/db";
 
 // Create a new post
 await Post.create({
   title: "New Post",
-  content: "Post content here"
+  content: "Post content here",
 });
 ```
 
 ### Updating Data
 
 ```typescript
-import { Post } from "@acme/db";
+import { Post } from "@project-name/db";
 
 // Update a post
 await Post.findByIdAndUpdate("post-id", {
-  title: "Updated Title"
+  title: "Updated Title",
 });
 ```
 
 ### Deleting Data
 
 ```typescript
-import { Post } from "@acme/db";
+import { Post } from "@project-name/db";
 
 // Delete a post
 await Post.findByIdAndDelete("post-id");

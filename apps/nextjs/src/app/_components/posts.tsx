@@ -1,14 +1,8 @@
 "use client";
 
-import {
-  useMutation,
-  useQueryClient,
-  useSuspenseQuery,
-} from "@tanstack/react-query";
-
-import type { RouterOutputs } from "@acme/api";
-import { cn } from "@acme/ui";
-import { Button } from "@acme/ui/button";
+import type { RouterOutputs } from "@project-name/api";
+import { cn } from "@project-nameect-name/ui";
+import { Button } from "@project-nameect-name/ui/button";
 import {
   Form,
   FormControl,
@@ -16,10 +10,15 @@ import {
   FormItem,
   FormMessage,
   useForm,
-} from "@acme/ui/form";
-import { Input } from "@acme/ui/input";
-import { toast } from "@acme/ui/toast";
-import { CreatePostSchema } from "@acme/validators";
+} from "@project-nameect-name/ui/form";
+import { Input } from "@project-nameect-name/ui/input";
+import { toast } from "@project-nameect-name/ui/toast";
+import { CreatePostSchema } from "@project-nameect-name/validators";
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from "@tanstack/react-query";
 
 import { useTRPC } from "~/trpc/react";
 

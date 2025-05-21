@@ -1,9 +1,8 @@
+import type { AppRouter } from "@project-name/api";
 import { QueryClient } from "@tanstack/react-query";
 import { createTRPCClient, httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import superjson from "superjson";
-
-import type { AppRouter } from "@acme/api";
 
 import { getBaseUrl } from "./base-url";
 import { getToken } from "./session-store";
@@ -46,4 +45,7 @@ export const trpc = createTRPCOptionsProxy<AppRouter>({
   queryClient,
 });
 
-export { type RouterInputs, type RouterOutputs } from "@acme/api";
+export {
+  type RouterInputs,
+  type RouterOutputs,
+} from "@project-nameect-name/api";

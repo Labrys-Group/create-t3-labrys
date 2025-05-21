@@ -39,8 +39,8 @@ pnpm dev:android
 pnpm build
 
 # Build a specific app
-pnpm -F @acme/nextjs build
-pnpm -F @acme/expo build
+pnpm -F @project-name/nextjs build
+pnpm -F @project-name/expo build
 pnpm -F docusaurus build
 ```
 
@@ -48,10 +48,10 @@ pnpm -F docusaurus build
 
 ```bash
 # Run all tests
-pnpm -F @acme/nextjs test
+pnpm -F @project-name/nextjs test
 
 # Run tests in watch mode
-pnpm -F @acme/nextjs test -- --watch
+pnpm -F @project-name/nextjs test -- --watch
 ```
 
 ### Linting & Formatting
@@ -107,11 +107,13 @@ pnpm turbo gen init
 This repository is a T3 stack monorepo built with Turborepo, consisting of:
 
 1. **Apps**:
+
    - **nextjs**: Main web application (Next.js 14, React 19)
    - **expo**: Mobile application (Expo, React Native) [optional]
    - **docusaurus**: Docusaurus site with project documentation
 
 2. **Packages**:
+
    - **api**: tRPC router definitions
    - **db**: Database models and connections (MongoDB)
    - **ui**: Shared UI components (shadcn/ui)
@@ -147,6 +149,7 @@ This repository is a T3 stack monorepo built with Turborepo, consisting of:
 ### Environment Variables
 
 Required environment variables (defined in `.env`):
+
 - `MONGODB_URI`: MongoDB connection string
 - `CLERK_SECRET_KEY`: Clerk authentication secret
 - `CLERK_PUBLISHABLE_KEY`: Clerk authentication public key

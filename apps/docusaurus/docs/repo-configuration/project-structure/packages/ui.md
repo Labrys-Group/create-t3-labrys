@@ -1,6 +1,6 @@
 # UI Package
 
-The `@acme/ui` package is a shared component library built with [shadcn/ui](https://ui.shadcn.com/), providing a set of reusable, accessible, and customizable UI components for the web applications in the monorepo. **All shadcn/ui components should be placed in this package** to maintain a consistent component library across the project.
+The `@project-name/ui` package is a shared component library built with [shadcn/ui](https://ui.shadcn.com/), providing a set of reusable, accessible, and customizable UI components for the web applications in the monorepo. **All shadcn/ui components should be placed in this package** to maintain a consistent component library across the project.
 
 ## Overview
 
@@ -38,7 +38,7 @@ The UI package currently includes the following components:
 A versatile button component with various styles and sizes:
 
 ```tsx
-import { Button } from "@acme/ui/button";
+import { Button } from "@project-name/ui/button";
 
 // Default button
 <Button>Click me</Button>
@@ -64,10 +64,10 @@ A dropdown menu component based on Radix UI:
 ```tsx
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-} from "@acme/ui/dropdown-menu";
+  DropdownMenuTrigger,
+} from "@project-name/ui/dropdown-menu";
 
 <DropdownMenu>
   <DropdownMenuTrigger>Open Menu</DropdownMenuTrigger>
@@ -75,7 +75,7 @@ import {
     <DropdownMenuItem>Item 1</DropdownMenuItem>
     <DropdownMenuItem>Item 2</DropdownMenuItem>
   </DropdownMenuContent>
-</DropdownMenu>
+</DropdownMenu>;
 ```
 
 ### Form Components
@@ -83,19 +83,19 @@ import {
 Form components integrated with `react-hook-form` and `zod` validation:
 
 ```tsx
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@project-name/ui/button";
 import {
   Form,
+  FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
   FormMessage,
-} from "@acme/ui/form";
-import { Input } from "@acme/ui/input";
-import { Button } from "@acme/ui/button";
+} from "@project-name/ui/form";
+import { Input } from "@project-name/ui/input";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 // Define schema
 const formSchema = z.object({
@@ -125,7 +125,7 @@ const form = useForm<z.infer<typeof formSchema>>({
     />
     <Button type="submit">Submit</Button>
   </form>
-</Form>
+</Form>;
 ```
 
 ### Input
@@ -133,7 +133,7 @@ const form = useForm<z.infer<typeof formSchema>>({
 A simple input component:
 
 ```tsx
-import { Input } from "@acme/ui/input";
+import { Input } from "@project-name/ui/input";
 
 <Input placeholder="Enter text..." />
 <Input type="email" disabled />
@@ -144,9 +144,9 @@ import { Input } from "@acme/ui/input";
 A label component for form elements:
 
 ```tsx
-import { Label } from "@acme/ui/label";
+import { Label } from "@project-name/ui/label";
 
-<Label htmlFor="email">Email</Label>
+<Label htmlFor="email">Email</Label>;
 ```
 
 ### Theme
@@ -154,13 +154,13 @@ import { Label } from "@acme/ui/label";
 Theme toggling and provider components:
 
 ```tsx
-import { ThemeProvider, ThemeToggle } from "@acme/ui/theme";
+import { ThemeProvider, ThemeToggle } from "@project-name/ui/theme";
 
 // In your root layout
 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
   {children}
   <ThemeToggle />
-</ThemeProvider>
+</ThemeProvider>;
 ```
 
 ### Toast
@@ -168,10 +168,10 @@ import { ThemeProvider, ThemeToggle } from "@acme/ui/theme";
 Toast notifications using sonner:
 
 ```tsx
-import { Toaster, toast } from "@acme/ui/toast";
+import { toast, Toaster } from "@project-name/ui/toast";
 
 // In your layout component
-<Toaster />
+<Toaster />;
 
 // Trigger toasts elsewhere
 toast("Default toast");
@@ -214,16 +214,12 @@ Theme configuration is managed through:
 The UI package exports a `cn` utility for merging Tailwind CSS classes with proper precedence:
 
 ```tsx
-import { cn } from "@acme/ui";
+import { cn } from "@project-name/ui";
 
 // Merge Tailwind classes
-<div className={cn(
-  "base-styles", 
-  isActive && "active-styles",
-  className
-)}>
+<div className={cn("base-styles", isActive && "active-styles", className)}>
   Content
-</div>
+</div>;
 ```
 
 This function combines [class-variance-authority](https://github.com/joe-bell/cva) with [tailwind-merge](https://github.com/dcastil/tailwind-merge) to handle class conflicts and composition.
@@ -245,6 +241,7 @@ All shadcn/ui components must be added to this package, rather than directly in 
 :::
 
 The CLI will:
+
 1. Add the component to `src/`
 2. Automatically update `package.json` exports
 3. Format the new component file
@@ -262,19 +259,13 @@ Example of a manually created component:
 ```tsx
 // packages/ui/src/card.tsx
 import * as React from "react";
-import { cn } from "@acme/ui";
+import { cn } from "@project-name/ui";
 
-export function Card({ 
-  className, 
-  ...props 
-}: React.ComponentProps<"div">) {
+export function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div 
-      className={cn(
-        "rounded-lg border bg-card p-4 shadow-sm", 
-        className
-      )} 
-      {...props} 
+    <div
+      className={cn("rounded-lg border bg-card p-4 shadow-sm", className)}
+      {...props}
     />
   );
 }
@@ -286,9 +277,9 @@ To use the UI components in a Next.js app:
 
 ```tsx
 // Import directly from the package path
-import { Button } from "@acme/ui/button";
-import { Input } from "@acme/ui/input";
-import { ThemeProvider, ThemeToggle } from "@acme/ui/theme";
+import { Button } from "@project-name/ui/button";
+import { Input } from "@project-name/ui/input";
+import { ThemeProvider, ThemeToggle } from "@project-name/ui/theme";
 
 // Use in your components
 export default function MyComponent() {
@@ -308,16 +299,16 @@ The UI package is configured through the `components.json` file:
 
 ```json
 {
-  "style": "new-york",  // shadcn/ui style preset
-  "rsc": true,          // Support for React Server Components
-  "tsx": true,          // Use TypeScript with JSX
+  "style": "new-york", // shadcn/ui style preset
+  "rsc": true, // Support for React Server Components
+  "tsx": true, // Use TypeScript with JSX
   "tailwind": {
     "config": "../../tooling/tailwind/web.ts",
     "baseColor": "zinc",
     "cssVariables": true
   },
   "aliases": {
-    "utils": "@acme/ui",
+    "utils": "@project-name/ui",
     "components": "src/",
     "ui": "src/"
   }

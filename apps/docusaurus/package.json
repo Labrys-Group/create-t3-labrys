@@ -1,5 +1,5 @@
 {
-  "name": "@acme/docusaurus",
+  "name": "@project-name/docusaurus",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -32,7 +32,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@acme/prettier-config": "workspace:*",
+    "@project-name/prettier-config": "workspace:*",
     "@docusaurus/module-type-aliases": "3.7.0",
     "@docusaurus/tsconfig": "3.7.0",
     "@docusaurus/types": "3.7.0",
@@ -57,7 +57,7 @@
   "engines": {
     "node": ">=18.0"
   },
-  "prettier": "@acme/prettier-config",
+  "prettier": "@project-name/prettier-config",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --ignore-path ../../.gitignore --write"

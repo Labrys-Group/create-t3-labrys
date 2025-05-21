@@ -49,12 +49,13 @@ The `trpc.ts` file contains essential tRPC setup:
 The API package defines two types of procedures:
 
 1. **publicProcedure**: Accessible without authentication
+
    ```typescript
    // Example: Get all posts
    all: publicProcedure.query(async () => {
      const posts = await Post.find().limit(10);
      return posts.map(/* ... */);
-   })
+   });
    ```
 
 2. **protectedProcedure**: Requires authentication with Clerk
@@ -64,7 +65,7 @@ The API package defines two types of procedures:
      .input(CreatePostSchema)
      .mutation(async ({ input }) => {
        await Post.create(input);
-     })
+     });
    ```
 
 ### Domain-Specific Routers
@@ -99,8 +100,8 @@ The `tests/test-caller.ts` file provides utilities for testing tRPC procedures:
 
 ## Integration with Other Packages
 
-- **@acme/db**: Uses MongoDB models for database operations
-- **@acme/validators**: Imports Zod schemas for input validation
+- **@project-name/db**: Uses MongoDB models for database operations
+- **@project-nameect-name/validators**: Imports Zod schemas for input validation
 
 ## Type Inference Helpers
 

@@ -1,5 +1,5 @@
 {
-  "name": "@acme/eslint-config",
+  "name": "@project-name/eslint-config",
   "private": true,
   "version": "0.3.0",
   "type": "module",
@@ -27,13 +27,13 @@
     "typescript-eslint": "^8.27.0"
   },
   "devDependencies": {
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@project-nameect-name/prettier-config": "workspace:*",
+    "@project-nameect-name/tsconfig": "workspace:*",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@acme/prettier-config",
+  "prettier": "@project-nameect-name/prettier-config",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --ignore-path ../../.gitignore --write"

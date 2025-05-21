@@ -6,8 +6,8 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 const config: Config = {
   // TODO: Update the name of the project
-  title: "acme Documentation",
-  tagline: "acme Documentation",
+  title: "project-name Documentation",
+  tagline: "project-name Documentation",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -55,9 +55,9 @@ const config: Config = {
     // TODO: Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "acme Documentation",
+      title: "project-name Documentation",
       logo: {
-        alt: "acme Logo",
+        alt: "project-name Logo",
         src: "img/logo.svg",
       },
       items: [

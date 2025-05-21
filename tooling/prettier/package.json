@@ -1,5 +1,5 @@
 {
-  "name": "@acme/prettier-config",
+  "name": "@project-name/prettier-config",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -17,11 +17,11 @@
     "prettier-plugin-tailwindcss": "^0.6.11"
   },
   "devDependencies": {
-    "@acme/tsconfig": "workspace:*",
+    "@project-nameect-name/tsconfig": "workspace:*",
     "@types/node": "^22.13.11",
     "typescript": "catalog:"
   },
-  "prettier": "@acme/prettier-config",
+  "prettier": "@project-nameect-name/prettier-config",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",

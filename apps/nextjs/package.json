@@ -1,5 +1,5 @@
 {
-  "name": "@acme/nextjs",
+  "name": "@project-name/nextjs",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -15,10 +15,10 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@acme/api": "workspace:*",
-    "@acme/db": "workspace:*",
-    "@acme/ui": "workspace:*",
-    "@acme/validators": "workspace:*",
+    "@project-nameect-name/api": "workspace:*",
+    "@project-nameect-name/db": "workspace:*",
+    "@project-nameect-name/ui": "workspace:*",
+    "@project-nameect-name/validators": "workspace:*",
     "@clerk/nextjs": "^6.14.3",
     "@next/third-parties": "^15.2.3",
     "@t3-oss/env-nextjs": "^0.12.0",
@@ -35,10 +35,10 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tailwind-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@project-nameect-name/eslint-config": "workspace:*",
+    "@project-nameect-name/prettier-config": "workspace:*",
+    "@project-nameect-name/tailwind-config": "workspace:*",
+    "@project-nameect-name/tsconfig": "workspace:*",
     "@testing-library/react": "^16.0.0",
     "@testing-library/react-hooks": "^8.0.1",
     "@types/node": "^22.13.11",
@@ -56,7 +56,7 @@
     "typescript": "catalog:",
     "vitest": "^1.6.1"
   },
-  "prettier": "@acme/prettier-config",
+  "prettier": "@project-nameect-name/prettier-config",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",

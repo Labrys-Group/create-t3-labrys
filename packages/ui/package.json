@@ -1,5 +1,5 @@
 {
-  "name": "@acme/ui",
+  "name": "@project-name/ui",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -33,10 +33,10 @@
     "tailwind-merge": "^3.0.2"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tailwind-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
+    "@project-nameect-name/eslint-config": "workspace:*",
+    "@project-nameect-name/prettier-config": "workspace:*",
+    "@project-nameect-name/tailwind-config": "workspace:*",
+    "@project-nameect-name/tsconfig": "workspace:*",
     "@types/react": "catalog:react19",
     "eslint": "catalog:",
     "prettier": "catalog:",
@@ -48,7 +48,7 @@
     "react": "catalog:react19",
     "zod": "catalog:"
   },
-  "prettier": "@acme/prettier-config",
+  "prettier": "@project-nameect-name/prettier-config",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix",

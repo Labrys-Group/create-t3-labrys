@@ -19,15 +19,16 @@ For Server Components, the monorepo provides:
 
 ```tsx
 // Import in Server Components
-import { trpc, prefetch, HydrateClient } from "~/trpc/server";
+import { HydrateClient, prefetch, trpc } from "~/trpc/server";
 ```
 
 Key utilities:
+
 - `trpc`: A server-side tRPC instance that lets you call procedures directly in Server Components
 - `prefetch`: A function to prefetch queries on the server
 - `HydrateClient`: A component that hydrates tRPC queries for client components
 
-### Client-Side tRPC (`~/trpc/react.tsx`) 
+### Client-Side tRPC (`~/trpc/react.tsx`)
 
 For Client Components, the setup provides:
 
@@ -37,6 +38,7 @@ import { useTRPC } from "~/trpc/react";
 ```
 
 Key utilities:
+
 - `useTRPC`: A hook that returns a client-side tRPC instance
 
 ## Using tRPC in Server Components
@@ -47,10 +49,14 @@ Server Components can directly call tRPC procedures without hooks:
 // This is a Server Component (no "use client" directive)
 import { trpc } from "~/trpc/server";
 
-export default async function PostDetails({ params }: { params: { id: string } }) {
+export default async function PostDetails({
+  params,
+}: {
+  params: { id: string };
+}) {
   // Direct procedure call from a server component
   const post = await trpc.post.byId.query(params.id);
-  
+
   return (
     <div>
       <h1>{post.title}</h1>
@@ -66,13 +72,13 @@ To optimize performance, you can prefetch data in Server Components that will be
 
 ```tsx
 // Server Component
-import { prefetch, HydrateClient, trpc } from "~/trpc/server";
+import { HydrateClient, prefetch, trpc } from "~/trpc/server";
 import { PostList } from "./_components/posts"; // Client Component
 
 export default function PostsPage() {
   // Prefetch the data on the server
   prefetch(trpc.post.all.queryOptions());
-  
+
   return (
     <HydrateClient>
       {/* Client component will receive hydrated data */}
@@ -90,13 +96,14 @@ Client Components need to use hooks to access tRPC:
 "use client";
 
 import { useSuspenseQuery } from "@tanstack/react-query";
+
 import { useTRPC } from "~/trpc/react";
 
 export function PostList() {
   const trpc = useTRPC();
   // Use TanStack Query hooks with tRPC
   const { data: posts } = useSuspenseQuery(trpc.post.all.queryOptions());
-  
+
   return (
     <div>
       {posts.map((post) => (
@@ -125,9 +132,9 @@ export default async function Dashboard() {
   const [stats, recentPosts, userCount] = await Promise.all([
     trpc.stats.summary.query(),
     trpc.post.recent.query({ limit: 5 }),
-    trpc.user.count.query()
+    trpc.user.count.query(),
   ]);
-  
+
   return (
     <div>
       <StatsDisplay stats={stats} />
@@ -150,7 +157,7 @@ import { CreatePostButton } from "./client-components";
 export default async function PostsPage() {
   // Server-side data fetching
   const posts = await trpc.post.all.query();
-  
+
   return (
     <div>
       {/* Static rendering of posts from server */}
@@ -159,7 +166,7 @@ export default async function PostsPage() {
           <PostCard key={post.id} post={post} />
         ))}
       </div>
-      
+
       {/* Interactive client component */}
       <CreatePostButton />
     </div>
@@ -174,14 +181,15 @@ For best performance, keep mutations in Client Components only:
 ```tsx
 "use client";
 
+import { toast } from "@project-name/ui/toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import { useTRPC } from "~/trpc/react";
-import { toast } from "@acme/ui/toast";
 
 export function CreatePostForm() {
   const trpc = useTRPC();
   const queryClient = useQueryClient();
-  
+
   const createPost = useMutation(
     trpc.post.create.mutationOptions({
       onSuccess: async () => {
@@ -194,7 +202,7 @@ export function CreatePostForm() {
       },
     }),
   );
-  
+
   // Form submission handling...
 }
 ```
@@ -206,12 +214,13 @@ For dynamic routes, use Suspense boundaries to provide a better loading experien
 ```tsx
 // app/post/[id]/page.tsx
 import { Suspense } from "react";
-import { prefetch, HydrateClient, trpc } from "~/trpc/server";
+
 import { PostSkeleton } from "~/components/skeletons";
+import { HydrateClient, prefetch, trpc } from "~/trpc/server";
 
 export default function PostPage({ params }: { params: { id: string } }) {
   prefetch(trpc.post.byId.queryOptions(params.id));
-  
+
   return (
     <HydrateClient>
       <main className="container py-8">
@@ -224,12 +233,12 @@ export default function PostPage({ params }: { params: { id: string } }) {
 }
 
 // In client component file:
-"use client";
+("use client");
 
 function PostContent({ id }: { id: string }) {
   const trpc = useTRPC();
   const { data: post } = useSuspenseQuery(trpc.post.byId.queryOptions(id));
-  
+
   // Render post content...
 }
 ```
@@ -239,6 +248,7 @@ function PostContent({ id }: { id: string }) {
 ### 1. Hydration Errors
 
 If you see hydration mismatch errors, ensure that:
+
 - You wrap client components that use tRPC with `HydrateClient`
 - You prefetch the exact same data with the same parameters on the server
 - Component rendering on the server matches initial client rendering
@@ -255,7 +265,7 @@ import { trpc } from "~/trpc/server";
 export default function PostsPage() {
   const [filter, setFilter] = useState("all"); // ERROR!
   const posts = await trpc.post.all.query({ filter });
-  
+
   // ...
 }
 ```
@@ -281,7 +291,7 @@ export function PostFilterControls() {
   const [filter, setFilter] = useState("all");
   const trpc = useTRPC();
   const { data } = useSuspenseQuery(trpc.post.all.queryOptions({ filter }));
-  
+
   // Render filter controls and filtered data
 }
 ```
@@ -299,7 +309,7 @@ export default function AdminPage() {
   async function handleDeleteUser(id: string) {
     await trpc.user.delete.mutation(id);
   }
-  
+
   // ...
 }
 ```
@@ -310,17 +320,14 @@ Solution: Use server actions or move mutations to Client Components:
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
+
 import { useTRPC } from "~/trpc/react";
 
 export function DeleteUserButton({ userId }: { userId: string }) {
   const trpc = useTRPC();
   const deleteUser = useMutation(trpc.user.delete.mutationOptions());
-  
-  return (
-    <button onClick={() => deleteUser.mutate(userId)}>
-      Delete User
-    </button>
-  );
+
+  return <button onClick={() => deleteUser.mutate(userId)}>Delete User</button>;
 }
 ```
 
@@ -332,17 +339,17 @@ A common requirement for real-time data is to initially load it on the server fo
 
 ```tsx
 // app/dashboard/page.tsx - Server Component
-import { prefetch, HydrateClient, trpc } from "~/trpc/server";
+import { HydrateClient, prefetch, trpc } from "~/trpc/server";
 import { DashboardMetrics } from "./_components/dashboard-metrics"; // Client Component
 
 export default function DashboardPage() {
   // Prefetch on the server for initial load
   prefetch(trpc.metrics.current.queryOptions());
-  
+
   return (
     <main className="container py-8">
       <h1>Dashboard</h1>
-      
+
       <HydrateClient>
         {/* Client component will use the prefetched data and then poll */}
         <DashboardMetrics />
@@ -359,11 +366,12 @@ Then in your client component, you can use the prefetched data and set up pollin
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+
 import { useTRPC } from "~/trpc/react";
 
 export function DashboardMetrics() {
   const trpc = useTRPC();
-  
+
   // This will:
   // 1. Use prefetched data for initial render (fast!)
   // 2. Start polling every 30 seconds for updates
@@ -371,26 +379,26 @@ export function DashboardMetrics() {
     ...trpc.metrics.current.queryOptions(),
     refetchInterval: 30 * 1000, // 30 seconds
   });
-  
+
   return (
     <div className="grid grid-cols-3 gap-4">
-      <MetricCard 
-        title="Active Users" 
-        value={metrics.activeUsers} 
+      <MetricCard title="Active Users" value={metrics.activeUsers} />
+      <MetricCard
+        title="Revenue Today"
+        value={`$${metrics.revenueToday.toFixed(2)}`}
       />
-      <MetricCard 
-        title="Revenue Today" 
-        value={`$${metrics.revenueToday.toFixed(2)}`} 
-      />
-      <MetricCard 
-        title="New Signups" 
-        value={metrics.newSignups} 
-      />
+      <MetricCard title="New Signups" value={metrics.newSignups} />
     </div>
   );
 }
 
-function MetricCard({ title, value }: { title: string; value: string | number }) {
+function MetricCard({
+  title,
+  value,
+}: {
+  title: string;
+  value: string | number;
+}) {
   return (
     <div className="rounded-lg bg-white p-4 shadow">
       <h3 className="text-sm font-medium text-gray-500">{title}</h3>
@@ -401,6 +409,7 @@ function MetricCard({ title, value }: { title: string; value: string | number })
 ```
 
 This pattern gives you the best of both worlds:
+
 - Server-side rendering for fast initial page loads and SEO
 - Client-side polling for real-time updates
 - No loading states needed for the initial render
@@ -413,8 +422,8 @@ const { data: metrics } = useQuery({
   ...trpc.metrics.current.queryOptions(),
   refetchInterval: 30 * 1000,
   refetchIntervalInBackground: true, // Continue polling even when tab is in background
-  refetchOnWindowFocus: true,        // Also refetch when user focuses the window
-  staleTime: 10 * 1000,              // Consider data fresh for 10 seconds
+  refetchOnWindowFocus: true, // Also refetch when user focuses the window
+  staleTime: 10 * 1000, // Consider data fresh for 10 seconds
 });
 ```
 
@@ -425,8 +434,12 @@ For improved UX with slow data sources:
 ```tsx
 // Dashboard.tsx (Server Component)
 import { Suspense } from "react";
+
+import {
+  RecentActivitySkeleton,
+  UserStatsSkeleton,
+} from "~/components/skeletons";
 import { trpc } from "~/trpc/server";
-import { UserStatsSkeleton, RecentActivitySkeleton } from "~/components/skeletons";
 
 export default function Dashboard() {
   return (
@@ -436,7 +449,7 @@ export default function Dashboard() {
         <h2>Quick Stats</h2>
         <QuickStats />
       </div>
-      
+
       {/* Slow data streams in with Suspense */}
       <div>
         <h2>User Statistics</h2>
@@ -444,7 +457,7 @@ export default function Dashboard() {
           <UserStats />
         </Suspense>
       </div>
-      
+
       <div>
         <h2>Recent Activity</h2>
         <Suspense fallback={<RecentActivitySkeleton />}>
@@ -480,42 +493,61 @@ For responsive UIs:
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import { useTRPC } from "~/trpc/react";
 
-export function LikeButton({ postId, initialLikes }: { postId: string, initialLikes: number }) {
+export function LikeButton({
+  postId,
+  initialLikes,
+}: {
+  postId: string;
+  initialLikes: number;
+}) {
   const trpc = useTRPC();
   const queryClient = useQueryClient();
-  
+
   const likeMutation = useMutation(
     trpc.post.like.mutationOptions({
       onMutate: async () => {
         // Cancel outgoing refetches
-        await queryClient.cancelQueries({ queryKey: trpc.post.byId.queryKey(postId) });
-        
+        await queryClient.cancelQueries({
+          queryKey: trpc.post.byId.queryKey(postId),
+        });
+
         // Snapshot previous value
-        const previousPost = queryClient.getQueryData(trpc.post.byId.queryKey(postId));
-        
+        const previousPost = queryClient.getQueryData(
+          trpc.post.byId.queryKey(postId),
+        );
+
         // Optimistically update
-        queryClient.setQueryData(trpc.post.byId.queryKey(postId), (old: any) => ({
-          ...old,
-          likes: old.likes + 1,
-        }));
-        
+        queryClient.setQueryData(
+          trpc.post.byId.queryKey(postId),
+          (old: any) => ({
+            ...old,
+            likes: old.likes + 1,
+          }),
+        );
+
         return { previousPost };
       },
       onError: (_, __, context) => {
         // Rollback on error
         if (context?.previousPost) {
-          queryClient.setQueryData(trpc.post.byId.queryKey(postId), context.previousPost);
+          queryClient.setQueryData(
+            trpc.post.byId.queryKey(postId),
+            context.previousPost,
+          );
         }
       },
       onSettled: () => {
         // Always refetch to ensure consistency
-        queryClient.invalidateQueries({ queryKey: trpc.post.byId.queryKey(postId) });
+        queryClient.invalidateQueries({
+          queryKey: trpc.post.byId.queryKey(postId),
+        });
       },
     }),
   );
-  
+
   return (
     <button onClick={() => likeMutation.mutate(postId)}>
       Like ({initialLikes + (likeMutation.isSuccess ? 1 : 0)})
