@@ -23,6 +23,16 @@
   gap: 2rem;
 }
 
+.warningText {
+  margin: 0.75rem 0 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #fef3c7; /* amber-100 */
+  color: #92400e; /* amber-800 */
+  border-radius: 6px;
+  font-weight: bold;
+  display: inline-block;
+}
+
 /* Warning Banner */
 .warningBanner {
   background-color: #fef3c7; /* amber-100 */
