@@ -15,7 +15,7 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
-import dbConnect from "@acme/db/dbConnect";
+import dbConnect from "@project-name/db/dbConnect";
 
 /**
  * 1. CONTEXT

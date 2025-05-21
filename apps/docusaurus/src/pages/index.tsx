@@ -25,24 +25,6 @@ function HomepageHeader() {
           {siteConfig.title}
         </Heading>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <p className={styles.warningText}>
-          📢 Note: Replace all instances of "project-name" in the repo with your
-          project name using find and replace in your IDE.
-        </p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/tags/repo-setup"
-          >
-            🚀 Get Started
-          </Link>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/repo-configuration/project-structure"
-          >
-            📂 Project Structure
-          </Link>
-        </div>
       </div>
     </header>
   );
@@ -51,13 +33,39 @@ function HomepageHeader() {
 function SetupStepsSection() {
   return (
     <div className={styles.setupStepsSection}>
-      <Heading as="h2">Repository Setup Checklist</Heading>
+      <Heading as="h2">Repository Quick Start</Heading>
+
       <div className={styles.setupStepsContainer}>
         <div className={styles.setupStep}>
           <div className={styles.setupStepNumber}>1</div>
           <div className={styles.setupStepContent}>
+            <Heading as="h3">Create a New Repository</Heading>
+            <p>
+              Click the button below to create a new repository from this
+              template:
+            </p>
+            <a
+              href="https://github.com/new?template_name=create-t3-labrys&template_owner=Labrys-Group"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.templateButton}
+            >
+              Use this template
+            </a>
+          </div>
+        </div>
+
+        <div className={styles.setupStep}>
+          <div className={styles.setupStepNumber}>2</div>
+          <div className={styles.setupStepContent}>
             <Heading as="h3">Initial Setup</Heading>
-            <p>Configure environment variables and install dependencies</p>
+            <p>Install dependencies and copy environment variables</p>
+            <div className={styles.codeBlock}>
+              <code>pnpm i</code>
+            </div>
+            <div className={styles.codeBlock}>
+              <code>cp .env.example .env</code>
+            </div>
             <div className={styles.setupLinks}>
               <Link
                 className="button button--primary button--sm"
@@ -76,10 +84,15 @@ function SetupStepsSection() {
         </div>
 
         <div className={styles.setupStep}>
-          <div className={styles.setupStepNumber}>2</div>
+          <div className={styles.setupStepNumber}>3</div>
           <div className={styles.setupStepContent}>
             <Heading as="h3">Database Configuration</Heading>
-            <p>Set up MongoDB and validate connection</p>
+            <p>Spin up MongoDB with Docker and validate connection</p>
+            <div className={styles.codeBlock}>
+              <code>
+                docker-compose -f packages/db/docker-compose.yml up -d
+              </code>
+            </div>
             <div className={styles.setupLinks}>
               <Link
                 className="button button--primary button--sm"
@@ -92,23 +105,34 @@ function SetupStepsSection() {
         </div>
 
         <div className={styles.setupStep}>
-          <div className={styles.setupStepNumber}>3</div>
+          <div className={styles.setupStepNumber}>4</div>
           <div className={styles.setupStepContent}>
-            <Heading as="h3">Secrets Management</Heading>
-            <p>Set up secrets management with dotenv-vault</p>
+            <Heading as="h3">Start the Web App</Heading>
+            <p>Start the Next.js application</p>
+            <div className={styles.codeBlock}>
+              <code>pnpm dev:next</code>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.setupStep}>
+          <div className={styles.setupStepNumber}>5</div>
+          <div className={styles.setupStepContent}>
+            <Heading as="h3">Setup Authentication</Heading>
+            <p>Log in to Clerk and claim your application</p>
             <div className={styles.setupLinks}>
               <Link
                 className="button button--primary button--sm"
-                to="/docs/repo-configuration/services/dotenv-vault"
+                to="/docs/repo-configuration/services/clerk"
               >
-                Dotenv Vault Setup →
+                Clerk Setup →
               </Link>
             </div>
           </div>
         </div>
 
         <div className={styles.setupStep}>
-          <div className={styles.setupStepNumber}>4</div>
+          <div className={styles.setupStepNumber}>6</div>
           <div className={styles.setupStepContent}>
             <Heading as="h3">Optional: Remove Expo</Heading>
             <p>If you're not building a mobile app, safely remove Expo</p>

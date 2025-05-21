@@ -20,7 +20,7 @@ cd apps/docusaurus
 pnpm start
 ```
 
-Or you can visit the hosted documentation [available here](https://create-t3-turbo-mongo-docusaurus.vercel.app/).
+Or you can visit the hosted documentation [available here](https://create.labrys.io/).
 
 ## Quick Start (Without Expo)
 
