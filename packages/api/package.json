@@ -21,7 +21,7 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.14.3",
+    "@clerk/nextjs": "^6.23.3",
     "@project-name/db": "workspace:*",
     "@project-name/validators": "workspace:*",
     "@swc/core": "^1.10.18",
