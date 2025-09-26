@@ -37,6 +37,35 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    function postCSSPlugin() {
+      return {
+        name: "postcss-plugin",
+        configureWebpack() {
+          return {
+            module: {
+              rules: [
+                {
+                  test: /\.css$/i,
+                  use: [
+                    {
+                      loader: "postcss-loader",
+                      options: {
+                        postcssOptions: {
+                          config: "./postcss.config.mjs",
+                        },
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
+          };
+        },
+      };
+    },
+  ],
+
   markdown: {
     mermaid: true,
   },
