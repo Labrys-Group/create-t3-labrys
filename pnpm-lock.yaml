@@ -93,6 +93,12 @@ importers:
       '@mdx-js/react':
         specifier: ^3.0.0
         version: 3.1.0(@types/react@19.1.13)(react@19.1.0)
+      '@project-name/tailwind-config':
+        specifier: workspace:*
+        version: link:../../tooling/tailwind
+      '@tailwindcss/postcss':
+        specifier: ^4.1.13
+        version: 4.1.13
       clsx:
         specifier: ^2.0.0
         version: 2.1.1
@@ -102,6 +108,9 @@ importers:
       express:
         specifier: ^4.21.2
         version: 4.21.2
+      postcss:
+        specifier: ^8.5.6
+        version: 8.5.6
       prism-react-renderer:
         specifier: ^2.3.0
         version: 2.4.1(react@19.1.0)
@@ -114,6 +123,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 4.1.13
     devDependencies:
       '@docusaurus/module-type-aliases':
         specifier: 3.7.0
@@ -133,6 +145,9 @@ importers:
       '@types/node':
         specifier: ^22.13.14
         version: 22.14.1
+      postcss-loader:
+        specifier: ^8.1.1
+        version: 8.2.0(postcss@8.5.6)(typescript@5.9.2)(webpack@5.98.0(@swc/core@1.13.19))
       prettier:
         specifier: 'catalog:'
         version: 3.6.2
@@ -268,7 +283,7 @@ importers:
     dependencies:
       '@clerk/nextjs':
         specifier: ^6.32.2
-        version: 6.32.2(next@15.5.4(@opentelemetry/api@1.9.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        version: 6.32.2(next@15.5.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@next/third-parties':
         specifier: ^15.5.4
         version: 15.5.4(next@15.5.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react@19.1.1)
@@ -392,13 +407,13 @@ importers:
         version: 5.9.2
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@22.14.1)(jsdom@27.0.0(bufferutil@4.0.9)(utf-8-validate@6.0.4))(lightningcss@1.30.1)(terser@5.37.0)
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@22.14.1)(jsdom@27.0.0(bufferutil@4.0.9)(postcss@8.5.6)(utf-8-validate@6.0.4))(lightningcss@1.30.1)(terser@5.37.0)
 
   packages/api:
     dependencies:
       '@clerk/nextjs':
         specifier: ^6.32.2
-        version: 6.32.2(next@15.5.4(@opentelemetry/api@1.9.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        version: 6.32.2(next@15.5.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@project-name/db':
         specifier: workspace:*
         version: link:../db
@@ -422,7 +437,7 @@ importers:
         version: 1.5.7(@swc/core@1.13.19)(rollup@4.34.4)
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/debug@4.1.12)(@types/node@22.14.1)(jsdom@27.0.0(bufferutil@4.0.9)(utf-8-validate@6.0.4))(lightningcss@1.30.1)(terser@5.37.0)
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@22.14.1)(jsdom@27.0.0(bufferutil@4.0.9)(postcss@8.5.6)(utf-8-validate@6.0.4))(lightningcss@1.30.1)(terser@5.37.0)
       zod:
         specifier: 'catalog:'
         version: 4.1.11
@@ -5808,6 +5823,15 @@ packages:
       typescript:
         optional: true
 
+  cosmiconfig@9.0.0:
+    resolution: {integrity: sha512-itvL5h8RETACmOTFc4UfIyB2RfEHi71Ax6E/PivVxq9NseKbOWpeyHEOIbmAw1rs8Ak0VursQNww7lf7YtUwzg==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      typescript: '>=4.9.5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
 
@@ -6431,6 +6455,10 @@ packages:
   env-editor@0.4.2:
     resolution: {integrity: sha512-ObFo8v4rQJAE59M69QzwloxPZtd33TpYEIjtKD1rrFDcM1Gd7IkDxEBU+HriziN6HSHQnBJi8Dmy+JWkav5HKA==}
     engines: {node: '>=8'}
+
+  env-paths@2.2.1:
+    resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
+    engines: {node: '>=6'}
 
   environment@1.1.0:
     resolution: {integrity: sha512-xUtoPkMggbz0MPyPiIWr1Kp4aeWJjDZ6SMvURhimjdZgsRuDplF5/s9hcgGhyXMhs+6vpnuoiZ2kFiu3FMnS8Q==}
@@ -9655,6 +9683,19 @@ packages:
     peerDependencies:
       postcss: ^7.0.0 || ^8.0.1
       webpack: ^5.0.0
+
+  postcss-loader@8.2.0:
+    resolution: {integrity: sha512-tHX+RkpsXVcc7st4dSdDGliI+r4aAQDuv+v3vFYHixb6YgjreG5AG4SEB0kDK8u2s6htqEEpKlkhSBUTvWKYnA==}
+    engines: {node: '>= 18.12.0'}
+    peerDependencies:
+      '@rspack/core': 0.x || 1.x
+      postcss: ^7.0.0 || ^8.0.1
+      webpack: ^5.0.0
+    peerDependenciesMeta:
+      '@rspack/core':
+        optional: true
+      webpack:
+        optional: true
 
   postcss-logical@8.1.0:
     resolution: {integrity: sha512-pL1hXFQ2fEXNKiNiAgtfA005T9FBxky5zkX6s4GZM2D8RkVgRqz3f4g1JUoq925zXv495qk8UNldDwh8uGEDoA==}
@@ -13485,7 +13526,7 @@ snapshots:
       - react-dom
       - svix
 
-  '@clerk/nextjs@6.32.2(next@15.5.4(@opentelemetry/api@1.9.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
+  '@clerk/nextjs@6.32.2(next@15.5.4(@babel/core@7.28.4)(@opentelemetry/api@1.9.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
     dependencies:
       '@clerk/backend': 2.15.0(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@clerk/clerk-react': 5.48.1(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -14902,7 +14943,7 @@ snapshots:
       resolve: 1.22.10
       resolve-from: 5.0.0
       resolve.exports: 2.0.3
-      semver: 7.7.1
+      semver: 7.7.2
       send: 0.19.1
       slugify: 1.6.6
       source-map-support: 0.5.21
@@ -14954,7 +14995,7 @@ snapshots:
       getenv: 1.0.0
       glob: 10.4.5
       resolve-from: 5.0.0
-      semver: 7.7.1
+      semver: 7.7.2
       slash: 3.0.0
       slugify: 1.6.6
       xcode: 3.0.1
@@ -14978,7 +15019,7 @@ snapshots:
       require-from-string: 2.0.2
       resolve-from: 5.0.0
       resolve-workspace-root: 2.0.0
-      semver: 7.7.1
+      semver: 7.7.2
       slugify: 1.6.6
       sucrase: 3.35.0
     transitivePeerDependencies:
@@ -14996,7 +15037,7 @@ snapshots:
       require-from-string: 2.0.2
       resolve-from: 5.0.0
       resolve-workspace-root: 2.0.0
-      semver: 7.7.1
+      semver: 7.7.2
       slugify: 1.6.6
       sucrase: 3.35.0
     transitivePeerDependencies:
@@ -15050,7 +15091,7 @@ snapshots:
       minimatch: 3.1.2
       p-limit: 3.1.0
       resolve-from: 5.0.0
-      semver: 7.7.1
+      semver: 7.7.2
     transitivePeerDependencies:
       - supports-color
 
@@ -15163,7 +15204,7 @@ snapshots:
       '@react-native/normalize-colors': 0.78.0
       debug: 4.4.3
       resolve-from: 5.0.0
-      semver: 7.7.1
+      semver: 7.7.2
       xml2js: 0.6.0
     transitivePeerDependencies:
       - supports-color
@@ -16578,7 +16619,7 @@ snapshots:
       metro-config: 0.81.0(bufferutil@4.0.9)
       metro-core: 0.81.0
       readline: 1.3.0
-      semver: 7.7.1
+      semver: 7.7.2
     optionalDependencies:
       '@react-native-community/cli-server-api': 13.6.9(bufferutil@4.0.9)
     transitivePeerDependencies:
@@ -17640,7 +17681,7 @@ snapshots:
       fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.1
+      semver: 7.7.2
       ts-api-utils: 2.1.0(typescript@5.9.2)
       typescript: 5.9.2
     transitivePeerDependencies:
@@ -17703,7 +17744,7 @@ snapshots:
       std-env: 3.9.0
       test-exclude: 7.0.1
       tinyrainbow: 2.0.0
-      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@22.14.1)(jsdom@27.0.0(bufferutil@4.0.9)(utf-8-validate@6.0.4))(lightningcss@1.30.1)(terser@5.37.0)
+      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@22.14.1)(jsdom@27.0.0(bufferutil@4.0.9)(postcss@8.5.6)(utf-8-validate@6.0.4))(lightningcss@1.30.1)(terser@5.37.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -18886,6 +18927,15 @@ snapshots:
     optionalDependencies:
       typescript: 5.9.2
 
+  cosmiconfig@9.0.0(typescript@5.9.2):
+    dependencies:
+      env-paths: 2.2.1
+      import-fresh: 3.3.0
+      js-yaml: 4.1.0
+      parse-json: 5.2.0
+    optionalDependencies:
+      typescript: 5.9.2
+
   create-require@1.1.1: {}
 
   cross-fetch@3.2.0:
@@ -19540,6 +19590,8 @@ snapshots:
   entities@6.0.1: {}
 
   env-editor@0.4.2: {}
+
+  env-paths@2.2.1: {}
 
   environment@1.1.0: {}
 
@@ -21461,7 +21513,7 @@ snapshots:
 
   jest-message-util@29.7.0:
     dependencies:
-      '@babel/code-frame': 7.26.2
+      '@babel/code-frame': 7.27.1
       '@jest/types': 29.6.3
       '@types/stack-utils': 2.0.3
       chalk: 4.1.2
@@ -22825,7 +22877,7 @@ snapshots:
       https-proxy-agent: 7.0.6
       mongodb: 6.20.0(socks@2.8.3)
       new-find-package-json: 2.0.0
-      semver: 7.7.1
+      semver: 7.7.2
       tar-stream: 3.1.7
       tslib: 2.8.1
       yauzl: 3.2.0
@@ -23317,7 +23369,7 @@ snapshots:
 
   parse-json@5.2.0:
     dependencies:
-      '@babel/code-frame': 7.26.2
+      '@babel/code-frame': 7.27.1
       error-ex: 1.3.2
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4
@@ -23619,6 +23671,17 @@ snapshots:
       jiti: 1.21.7
       postcss: 8.5.6
       semver: 7.7.2
+      webpack: 5.98.0(@swc/core@1.13.19)
+    transitivePeerDependencies:
+      - typescript
+
+  postcss-loader@8.2.0(postcss@8.5.6)(typescript@5.9.2)(webpack@5.98.0(@swc/core@1.13.19)):
+    dependencies:
+      cosmiconfig: 9.0.0(typescript@5.9.2)
+      jiti: 2.6.0
+      postcss: 8.5.6
+      semver: 7.7.2
+    optionalDependencies:
       webpack: 5.98.0(@swc/core@1.13.19)
     transitivePeerDependencies:
       - typescript
@@ -26110,7 +26173,7 @@ snapshots:
       lightningcss: 1.30.1
       terser: 5.37.0
 
-  vitest@3.2.4(@types/debug@4.1.12)(@types/node@22.14.1)(jsdom@27.0.0(bufferutil@4.0.9)(utf-8-validate@6.0.4))(lightningcss@1.30.1)(terser@5.37.0):
+  vitest@3.2.4(@types/debug@4.1.12)(@types/node@22.14.1)(jsdom@27.0.0(bufferutil@4.0.9)(postcss@8.5.6)(utf-8-validate@6.0.4))(lightningcss@1.30.1)(terser@5.37.0):
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
