@@ -8,7 +8,7 @@
  */
 import type {
   ProcedureBuilder,
-  unsetMarker,
+  UnsetMarker,
 } from "@trpc/server/unstable-core-do-not-import";
 import { auth } from "@clerk/nextjs/server";
 import { initTRPC, TRPCError } from "@trpc/server";
@@ -132,10 +132,10 @@ export const protectedProcedure: ProcedureBuilder<
   {
     auth: Partial<Awaited<ReturnType<typeof auth>>>;
   },
-  typeof unsetMarker,
-  typeof unsetMarker,
-  typeof unsetMarker,
-  typeof unsetMarker,
+  UnsetMarker,
+  UnsetMarker,
+  UnsetMarker,
+  UnsetMarker,
   false
 > = t.procedure.use(timingMiddleware).use(({ ctx, next }) => {
   if (!ctx.auth.userId) {

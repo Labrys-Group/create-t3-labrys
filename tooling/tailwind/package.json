@@ -15,7 +15,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "postcss": "^8.5.3",
+    "postcss": "^8.5.6",
     "tailwindcss": "catalog:",
     "tailwindcss-animate": "^1.0.7"
   },
@@ -23,7 +23,7 @@
     "@project-name/eslint-config": "workspace:*",
     "@project-name/prettier-config": "workspace:*",
     "@project-name/tsconfig": "workspace:*",
-    "@types/node": "^22.13.11",
+    "@types/node": "^22.13.14",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"
