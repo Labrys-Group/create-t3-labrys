@@ -1,5 +1,14 @@
 "use client";
 
+import type { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+
 import type { RouterOutputs } from "@project-name/api";
 import { cn } from "@project-name/ui";
 import { Button } from "@project-name/ui/button";
@@ -9,23 +18,17 @@ import {
   FormField,
   FormItem,
   FormMessage,
-  useForm,
 } from "@project-name/ui/form";
 import { Input } from "@project-name/ui/input";
 import { toast } from "@project-name/ui/toast";
 import { CreatePostSchema } from "@project-name/validators";
-import {
-  useMutation,
-  useQueryClient,
-  useSuspenseQuery,
-} from "@tanstack/react-query";
 
 import { useTRPC } from "~/trpc/react";
 
 export function CreatePostForm() {
   const trpc = useTRPC();
-  const form = useForm({
-    schema: CreatePostSchema,
+  const form = useForm<z.infer<typeof CreatePostSchema>>({
+    resolver: zodResolver(CreatePostSchema),
     defaultValues: {
       content: "",
       title: "",
@@ -135,15 +138,15 @@ export function PostCard(props: {
   );
 
   return (
-    <div className="flex flex-row rounded-lg bg-muted p-4">
+    <div className="bg-muted flex flex-row rounded-lg p-4">
       <div className="flex-grow">
-        <h2 className="text-2xl font-bold text-primary">{props.post.title}</h2>
+        <h2 className="text-primary text-2xl font-bold">{props.post.title}</h2>
         <p className="mt-2 text-sm">{props.post.content}</p>
       </div>
       <div>
         <Button
           variant="ghost"
-          className="cursor-pointer text-sm font-bold uppercase text-primary hover:bg-transparent hover:text-white"
+          className="text-primary cursor-pointer text-sm font-bold uppercase hover:bg-transparent hover:text-white"
           onClick={() => deletePost.mutate(props.post.id)}
         >
           Delete
@@ -156,11 +159,11 @@ export function PostCard(props: {
 export function PostCardSkeleton(props: { pulse?: boolean }) {
   const { pulse = true } = props;
   return (
-    <div className="flex flex-row rounded-lg bg-muted p-4">
+    <div className="bg-muted flex flex-row rounded-lg p-4">
       <div className="flex-grow">
         <h2
           className={cn(
-            "w-1/4 rounded bg-primary text-2xl font-bold",
+            "bg-primary w-1/4 rounded text-2xl font-bold",
             pulse && "animate-pulse",
           )}
         >
