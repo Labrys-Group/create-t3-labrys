@@ -1,12 +1,13 @@
 import type { TRPCRouterRecord } from "@trpc/server";
-import { Post } from "@project-name/db";
-import { CreatePostSchema } from "@project-name/validators";
 import { z } from "zod";
 
-import { protectedProcedure, publicProcedure } from "../trpc";
+import { Post } from "@project-name/db";
+import { CreatePostSchema } from "@project-name/validators";
+
+import { dbProcedure, protectedDbProcedure } from "../trpc";
 
 export const postRouter = {
-  all: publicProcedure.query(async () => {
+  all: dbProcedure.query(async () => {
     const posts = await Post.find().limit(10);
 
     return posts.map((post) => ({
@@ -16,7 +17,7 @@ export const postRouter = {
     }));
   }),
 
-  byId: publicProcedure
+  byId: dbProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ input }) => {
       const post = await Post.findById(input.id);
@@ -30,13 +31,13 @@ export const postRouter = {
       };
     }),
 
-  create: protectedProcedure
+  create: protectedDbProcedure
     .input(CreatePostSchema)
     .mutation(async ({ input }) => {
       await Post.create(input);
     }),
 
-  delete: protectedProcedure.input(z.string()).mutation(async ({ input }) => {
+  delete: protectedDbProcedure.input(z.string()).mutation(async ({ input }) => {
     await Post.findByIdAndDelete(input);
   }),
 } satisfies TRPCRouterRecord;

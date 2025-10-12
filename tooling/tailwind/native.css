@@ -1,0 +1,6 @@
+@import "./base.css";
+
+@theme {
+  /* Native/mobile specific configuration */
+  /* Inherits base theme but could have mobile-specific overrides */
+}

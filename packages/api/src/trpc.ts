@@ -8,7 +8,7 @@
  */
 import type {
   ProcedureBuilder,
-  unsetMarker,
+  UnsetMarker,
 } from "@trpc/server/unstable-core-do-not-import";
 import { auth } from "@clerk/nextjs/server";
 import { initTRPC, TRPCError } from "@trpc/server";
@@ -41,7 +41,8 @@ export const createTRPCContext = async (opts: {
   const source = opts.headers.get("x-trpc-source") ?? "unknown";
   console.log(">>> tRPC Request from", source, "by", authInfo.userId); // TODO: can we show email here?
 
-  await dbConnect();
+  // Note: Database connection is now handled at the procedure level
+  // This makes context creation faster and more reliable
 
   return {
     auth: authInfo,
@@ -85,7 +86,24 @@ export const createCallerFactory = t.createCallerFactory;
 export const createTRPCRouter = t.router;
 
 /**
- * Middleware for timing procedure execution and adding an articifial delay in development.
+ * Middleware for ensuring database connection is established before procedures
+ */
+const dbMiddleware = t.middleware(async ({ next, path }) => {
+  try {
+    await dbConnect();
+    return next();
+  } catch (error) {
+    console.error(`[TRPC] Database connection failed for ${path}:`, error);
+    throw new TRPCError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: "Database connection failed",
+      cause: error,
+    });
+  }
+});
+
+/**
+ * Middleware for timing procedure execution and adding an artificial delay in development.
  *
  * You can remove this if you don't like it, but it can help catch unwanted waterfalls by simulating
  * network latency that would occur in production but not in local development.
@@ -117,6 +135,14 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
 export const publicProcedure = t.procedure.use(timingMiddleware);
 
 /**
+ * Database-connected procedure
+ *
+ * Use this for procedures that need database access. It ensures the database
+ * connection is established before the procedure runs.
+ */
+export const dbProcedure = publicProcedure.use(dbMiddleware);
+
+/**
  * Protected (authenticated) procedure
  *
  * If you want a query or mutation to ONLY be accessible to logged in users, use this. It verifies
@@ -132,10 +158,10 @@ export const protectedProcedure: ProcedureBuilder<
   {
     auth: Partial<Awaited<ReturnType<typeof auth>>>;
   },
-  typeof unsetMarker,
-  typeof unsetMarker,
-  typeof unsetMarker,
-  typeof unsetMarker,
+  UnsetMarker,
+  UnsetMarker,
+  UnsetMarker,
+  UnsetMarker,
   false
 > = t.procedure.use(timingMiddleware).use(({ ctx, next }) => {
   if (!ctx.auth.userId) {
@@ -146,3 +172,12 @@ export const protectedProcedure: ProcedureBuilder<
     ctx,
   });
 });
+
+/**
+ * Protected procedure with database connection
+ *
+ * Use this for authenticated procedures that need database access.
+ */
+export const protectedDbProcedure = protectedProcedure.use(
+  dbMiddleware,
+) as typeof protectedProcedure;

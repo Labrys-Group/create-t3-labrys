@@ -32,8 +32,8 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@typegoose/typegoose": "^12.14.0",
-    "mongoose": "^8.13.2",
+    "@typegoose/typegoose": "^12.19.0",
+    "mongoose": "^8.18.2",
     "zod": "catalog:"
   },
   "devDependencies": {

@@ -47,11 +47,14 @@ pnpm -F docusaurus build
 ### Testing
 
 ```bash
-# Run all tests
+# Run all tests (Next.js app)
 pnpm -F @project-name/nextjs test
 
 # Run tests in watch mode
 pnpm -F @project-name/nextjs test -- --watch
+
+# Run API tests
+pnpm -F @project-name/api test
 ```
 
 ### Linting & Formatting
@@ -172,4 +175,10 @@ cd apps/docusaurus
 pnpm start
 ```
 
-Or visit the hosted version: [https://create-t3-turbo-mongo-docusaurus.vercel.app/](https://create-t3-turbo-mongo-docusaurus.vercel.app/)
+Or visit the hosted version: [https://create.labrys.io/](https://create.labrys.io/)
+
+# important-instruction-reminders
+Do what has been asked; nothing more, nothing less.
+NEVER create files unless they're absolutely necessary for achieving your goal.
+ALWAYS prefer editing an existing file to creating a new one.
+NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
