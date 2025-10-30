@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+
 import { cn } from "@project-name/ui";
 import { ThemeProvider, ThemeToggle } from "@project-name/ui/theme";
 import { Toaster } from "@project-name/ui/toast";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 
 import { TRPCReactProvider } from "~/trpc/react";
 
@@ -43,28 +44,34 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout(props: { children: React.ReactNode }) {
-  return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        {env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
-          <GoogleAnalytics gaId={env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+  const content = (
+    <html lang="en" suppressHydrationWarning>
+      {env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
+        <GoogleAnalytics gaId={env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+      )}
+      <body
+        className={cn(
+          "bg-background text-foreground min-h-screen font-sans antialiased",
+          GeistSans.variable,
+          GeistMono.variable,
         )}
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans text-foreground antialiased",
-            GeistSans.variable,
-            GeistMono.variable,
-          )}
-        >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <TRPCReactProvider>{props.children}</TRPCReactProvider>
-            <div className="absolute bottom-4 right-4">
-              <ThemeToggle />
-            </div>
-            <Toaster />
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+      >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <TRPCReactProvider>{props.children}</TRPCReactProvider>
+          <div className="absolute right-4 bottom-4">
+            <ThemeToggle />
+          </div>
+          <Toaster />
+        </ThemeProvider>
+      </body>
+    </html>
   );
+
+  // Only use ClerkProvider if the publishable key is available
+  // This allows the app to build without Clerk for development/testing
+  if (env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
+    return <ClerkProvider>{content}</ClerkProvider>;
+  }
+
+  return content;
 }
