@@ -10,17 +10,19 @@ npx create-turbo@latest -e https://github.com/Labrys-Group/create-t3-labrys
 
 ## Documentation
 
-The main documentation is in Docusaurus within the repo template.
+Documentation is co-located with the code. Key documentation files:
 
-To run Docusaurus:
+- **[Project Overview](./docs/README.md)**: Main documentation index
+- **[Project Structure](./docs/PROJECT-STRUCTURE.md)**: Monorepo organization
+- **App Documentation**:
+  - [Next.js App](./apps/nextjs/docs/README.md)
+  - [Expo App](./apps/expo/docs/README.md)
+- **Package Documentation**:
+  - [API Package](./packages/api/README.md)
+  - [Database Package](./packages/db/README.md)
+  - [UI Package](./packages/ui/README.md)
 
-```bash
-pnpm i
-cd apps/docusaurus
-pnpm start
-```
-
-Or you can visit the hosted documentation [available here](https://create.labrys.io/).
+You can also visit the online documentation at [https://create.labrys.io/](https://create.labrys.io/) (if hosted).
 
 ## Quick Start (Without Expo)
 
