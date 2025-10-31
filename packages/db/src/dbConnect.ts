@@ -6,14 +6,6 @@ declare global {
   var mongoose: any; // This must be a `var` and not a `let / const`
 }
 
-const MONGODB_URI = process.env.MONGODB_URI!;
-
-if (!MONGODB_URI) {
-  throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env file",
-  );
-}
-
 let cached = global.mongoose;
 
 if (!cached) {
@@ -21,6 +13,15 @@ if (!cached) {
 }
 
 async function dbConnect() {
+  // Check for MONGODB_URI at runtime, not module load time
+  const MONGODB_URI = process.env.MONGODB_URI;
+
+  if (!MONGODB_URI) {
+    throw new Error(
+      "Please define the MONGODB_URI environment variable inside .env file",
+    );
+  }
+
   if (cached.conn) {
     // Check if the connection is still valid
     if (cached.conn.connection.readyState === 1) {

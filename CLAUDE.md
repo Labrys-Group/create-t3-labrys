@@ -19,10 +19,6 @@ pnpm dev
 # Start only the Next.js app
 pnpm dev:next
 
-# Start the documentation site
-cd apps/docusaurus
-pnpm start
-
 # Start Expo app (iOS)
 cd apps/expo
 pnpm dev:ios
@@ -41,7 +37,6 @@ pnpm build
 # Build a specific app
 pnpm -F @project-name/nextjs build
 pnpm -F @project-name/expo build
-pnpm -F docusaurus build
 ```
 
 ### Testing
@@ -113,7 +108,6 @@ This repository is a T3 stack monorepo built with Turborepo, consisting of:
 
    - **nextjs**: Main web application (Next.js 14, React 19)
    - **expo**: Mobile application (Expo, React Native) [optional]
-   - **docusaurus**: Docusaurus site with project documentation
 
 2. **Packages**:
 
@@ -132,7 +126,6 @@ This repository is a T3 stack monorepo built with Turborepo, consisting of:
 - **API**: tRPC v11 for type-safe API calls
 - **Database**: MongoDB with mongoose/typegoose
 - **Authentication**: Clerk
-- **Documentation**: Docusaurus
 - **Build System**: Turborepo
 
 ### API & Data Flow
@@ -168,14 +161,17 @@ Required environment variables (defined in `.env`):
 
 ## Documentation
 
-The built-in documentation site provides detailed information about the project. Run it locally:
+Documentation is co-located with the code:
 
-```bash
-cd apps/docusaurus
-pnpm start
-```
-
-Or visit the hosted version: [https://create.labrys.io/](https://create.labrys.io/)
+- **[Project Overview](./docs/README.md)**: Main documentation index
+- **[Project Structure](./docs/PROJECT-STRUCTURE.md)**: Monorepo organization
+- **App Documentation**:
+  - [Next.js App](./apps/nextjs/docs/README.md)
+  - [Expo App](./apps/expo/docs/README.md)
+- **Package Documentation**:
+  - [API Package](./packages/api/README.md)
+  - [Database Package](./packages/db/README.md)
+  - [UI Package](./packages/ui/README.md)
 
 # important-instruction-reminders
 Do what has been asked; nothing more, nothing less.
